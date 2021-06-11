@@ -559,7 +559,7 @@ public class textEditorGUI extends javax.swing.JFrame {
 
     private void wordCounterItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wordCounterItemActionPerformed
         // TODO add your handling code here:
-        
+        JOptionPane.showMessageDialog(this,"Total words: " + " WORD COUNT HERE " + "\n" + "Total Characters: " + "CHARACTER COUNT HERE");  
     }//GEN-LAST:event_wordCounterItemActionPerformed
 
     private void headAndFootItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_headAndFootItemActionPerformed
