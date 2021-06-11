@@ -36,7 +36,7 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
 import javax.swing.text.html.HTMLEditorKit;
-import static sun.management.Agent.error;
+//import static sun.management.Agent.error;
 
 public class textEditorGUI extends javax.swing.JFrame {
     String fileName;
@@ -127,8 +127,8 @@ public class textEditorGUI extends javax.swing.JFrame {
         clearFormatItem = new javax.swing.JMenuItem();
         toolMenu = new javax.swing.JMenu();
         wordCounterItem = new javax.swing.JMenuItem();
-        splitWordsItem = new javax.swing.JMenuItem();
         aboutMenu = new javax.swing.JMenu();
+        aboutSmartPad = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -263,7 +263,7 @@ public class textEditorGUI extends javax.swing.JFrame {
 
         FileMenu.setText("File");
 
-        newFileItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        newFileItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         newFileItem.setText("New");
         newFileItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -272,7 +272,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         FileMenu.add(newFileItem);
 
-        openFileItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        openFileItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         openFileItem.setText("Open");
         openFileItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -281,7 +281,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         FileMenu.add(openFileItem);
 
-        saveItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        saveItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         saveItem.setText("Save");
         saveItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -290,7 +290,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         FileMenu.add(saveItem);
 
-        saveAsItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        saveAsItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         saveAsItem.setText("SaveAs");
         saveAsItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -307,7 +307,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         FileMenu.add(printItem);
 
-        exitItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_MASK));
+        exitItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_DOWN_MASK));
         exitItem.setText("Exit");
         exitItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -320,7 +320,7 @@ public class textEditorGUI extends javax.swing.JFrame {
 
         EditMenu.setText("Edit");
 
-        undoItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_MASK));
+        undoItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         undoItem.setText("Undo");
         undoItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -329,7 +329,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         EditMenu.add(undoItem);
 
-        redoItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.CTRL_MASK));
+        redoItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         redoItem.setText("Redo");
         redoItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -338,7 +338,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         EditMenu.add(redoItem);
 
-        copyItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
+        copyItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         copyItem.setText("Copy");
         copyItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -347,7 +347,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         EditMenu.add(copyItem);
 
-        pasteItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_MASK));
+        pasteItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         pasteItem.setText("Paste");
         pasteItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -356,7 +356,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         EditMenu.add(pasteItem);
 
-        cutItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
+        cutItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         cutItem.setText("Cut");
         cutItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -365,7 +365,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         EditMenu.add(cutItem);
 
-        selectAllItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
+        selectAllItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         selectAllItem.setText("Select All");
         selectAllItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -399,7 +399,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         formatMenu.add(headAndFootItem);
 
-        highLightColorButton.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
+        highLightColorButton.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         highLightColorButton.setText("Highlight Color");
         highLightColorButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -423,12 +423,18 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         toolMenu.add(wordCounterItem);
 
-        splitWordsItem.setText("Split words");
-        toolMenu.add(splitWordsItem);
-
         jMenuBar1.add(toolMenu);
 
         aboutMenu.setText("About");
+
+        aboutSmartPad.setText("About SmartPad");
+        aboutSmartPad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aboutSmartPadActionPerformed(evt);
+            }
+        });
+        aboutMenu.add(aboutSmartPad);
+
         jMenuBar1.add(aboutMenu);
 
         setJMenuBar(jMenuBar1);
@@ -616,6 +622,13 @@ public class textEditorGUI extends javax.swing.JFrame {
         textPane.cut();
     }//GEN-LAST:event_cutButtonActionPerformed
 
+    private void aboutSmartPadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutSmartPadActionPerformed
+        // Cam
+        JOptionPane.showMessageDialog(this,"SmartPad, Copyright 2021" + "\n" + "Created By: " + "\n" + "Brent Soloniewicz" + "\n" + "Nathanial Matovski" + "\n" + "Ellis Mouton" + "\n" + "Mahmudur Rahman" + "\n" + "Cameron Jordan" + "\n" + "Xi Song");  
+    }//GEN-LAST:event_aboutSmartPadActionPerformed
+
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -657,6 +670,7 @@ public class textEditorGUI extends javax.swing.JFrame {
     private javax.swing.JButton HyperLinkQuickButton;
     private javax.swing.JButton NewFileButton;
     private javax.swing.JMenu aboutMenu;
+    private javax.swing.JMenuItem aboutSmartPad;
     private javax.swing.JMenuItem clearFormatItem;
     private javax.swing.JButton clearHighLighterQuickButton;
     private javax.swing.JMenu colorMenu;
@@ -692,7 +706,6 @@ public class textEditorGUI extends javax.swing.JFrame {
     private javax.swing.JButton searchButton;
     private javax.swing.JTextField searchContent;
     private javax.swing.JMenuItem selectAllItem;
-    private javax.swing.JMenuItem splitWordsItem;
     private javax.swing.JMenu textMenu;
     private javax.swing.JTextPane textPane;
     private javax.swing.JMenu toolMenu;
