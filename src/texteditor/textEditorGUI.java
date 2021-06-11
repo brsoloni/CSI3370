@@ -118,8 +118,6 @@ public class textEditorGUI extends javax.swing.JFrame {
         pasteItem = new javax.swing.JMenuItem();
         cutItem = new javax.swing.JMenuItem();
         selectAllItem = new javax.swing.JMenuItem();
-        insertMenu = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
         formatMenu = new javax.swing.JMenu();
         textMenu = new javax.swing.JMenu();
         colorMenu = new javax.swing.JMenu();
@@ -378,13 +376,6 @@ public class textEditorGUI extends javax.swing.JFrame {
         EditMenu.add(selectAllItem);
 
         jMenuBar1.add(EditMenu);
-
-        insertMenu.setText("Insert");
-
-        jMenuItem2.setText("Image");
-        insertMenu.add(jMenuItem2);
-
-        jMenuBar1.add(insertMenu);
 
         formatMenu.setText("Format");
 
@@ -686,11 +677,9 @@ public class textEditorGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem headAndFootItem;
     private javax.swing.JMenuItem highLightColorButton;
     private javax.swing.JButton highLightQuickButton;
-    private javax.swing.JMenu insertMenu;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar.Separator jSeparator1;

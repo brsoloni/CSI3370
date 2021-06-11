@@ -161,18 +161,6 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="insertMenu">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Insert"/>
-          </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Image"/>
-              </Properties>
-            </MenuItem>
-          </SubComponents>
-        </Menu>
         <Menu class="javax.swing.JMenu" name="formatMenu">
           <Properties>
             <Property name="text" type="java.lang.String" value="Format"/>
