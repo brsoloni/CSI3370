@@ -75,7 +75,8 @@ public class textEditorGUI extends javax.swing.JFrame {
         initComponents();
         //textPane.setContentType("text/html");
        // textPane.setText("<html>789645</html>"); //Your whole html here..
-       
+       textPane.requestFocusInWindow();
+       textArrV[0] = textPane;
        
     }
 
@@ -717,7 +718,7 @@ public class textEditorGUI extends javax.swing.JFrame {
             try {
                 return new MessageFormat(source);
             } catch (IllegalArgumentException e) {
-                error("Sorry, this format is invalid.");
+                System.out.println("Sorry, this format is invalid.");
             }
         }
         return null;
@@ -738,7 +739,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         return activePane;
     }
     
-   public void saveAs(){
+ public void saveAs(){
         String name="";
         f[0] = new File("");
         if (indVWS > 0) {
@@ -805,7 +806,8 @@ public class textEditorGUI extends javax.swing.JFrame {
             }
         }
     }
-     public void save(){
+    
+    public void save(){
         String name="";
         f[0] = new File("");
         if (splitsSaved == false && sameLocation == true && newDifLocation == false) {
