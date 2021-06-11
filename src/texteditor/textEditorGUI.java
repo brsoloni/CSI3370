@@ -91,6 +91,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         textPane = new javax.swing.JTextPane();
         jToolBar = new javax.swing.JToolBar();
+        jSeparator4 = new javax.swing.JToolBar.Separator();
         NewFileButton = new javax.swing.JButton();
         openFileButton = new javax.swing.JButton();
         HyperLinkQuickButton = new javax.swing.JButton();
@@ -140,7 +141,9 @@ public class textEditorGUI extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(textPane);
 
+        jToolBar.setFloatable(false);
         jToolBar.setRollover(true);
+        jToolBar.add(jSeparator4);
 
         NewFileButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/texteditor.Icons/newFile.png"))); // NOI18N
         NewFileButton.setFocusable(false);
@@ -693,6 +696,7 @@ public class textEditorGUI extends javax.swing.JFrame {
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar.Separator jSeparator3;
+    private javax.swing.JToolBar.Separator jSeparator4;
     private javax.swing.JToolBar jToolBar;
     private javax.swing.JMenuItem newFileItem;
     private javax.swing.JButton openFileButton;
