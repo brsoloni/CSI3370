@@ -17,6 +17,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.MessageFormat;
+import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractAction;
@@ -72,7 +73,7 @@ public class textEditorGUI extends javax.swing.JFrame {
     private KeyStroke pasteKeystroke = KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK);
     public textEditorGUI() {
         initComponents();
-        textPane.setContentType("text/html");
+        //textPane.setContentType("text/html");
        // textPane.setText("<html>789645</html>"); //Your whole html here..
        
        
@@ -558,8 +559,9 @@ public class textEditorGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_NewFileButtonActionPerformed
 
     private void wordCounterItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wordCounterItemActionPerformed
-        // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this,"Total words: " + " WORD COUNT HERE " + "\n" + "Total Characters: " + "CHARACTER COUNT HERE");  
+         //Xi's feature
+        String text = getFocusedComponent().getText();
+        JOptionPane.showMessageDialog(this,"Total words: "+ new StringTokenizer(text).countTokens()); 
     }//GEN-LAST:event_wordCounterItemActionPerformed
 
     private void headAndFootItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_headAndFootItemActionPerformed
