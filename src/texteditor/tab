@@ -1,0 +1,263 @@
+import java.util.*;
+
+import javax.swing.text.*;
+
+public class TableDocument extends DefaultStyledDocument {
+    public static final String ELEMENT_NAME_TABLE = "table";
+    public static final String ELEMENT_NAME_ROW = "row";
+    public static final String ELEMENT_NAME_CELL = "cell";
+    public static final String PARAM_CELL_WIDTH = "cell-width";
+
+    public TableDocument() {
+    }
+
+    protected void insertTable(int offset, int rowCount, int[] colWidths) {
+        try {
+            SimpleAttributeSet attrs = new SimpleAttributeSet();
+
+            ArrayList tableSpecs = new ArrayList();
+            tableSpecs.add(new ElementSpec(attrs, ElementSpec.EndTagType)); //close paragraph tag
+
+            SimpleAttributeSet tableAttrs = new SimpleAttributeSet();
+            tableAttrs.addAttribute(ElementNameAttribute, ELEMENT_NAME_TABLE);
+            ElementSpec tableStart = new ElementSpec(tableAttrs, ElementSpec.StartTagType);
+            tableSpecs.add(tableStart); //start table tag
+
+            fillRowSpecs(tableSpecs, rowCount, colWidths);
+
+            ElementSpec tableEnd = new ElementSpec(tableAttrs, ElementSpec.EndTagType);
+            tableSpecs.add(tableEnd); //end table tag
+
+            tableSpecs.add(new ElementSpec(attrs, ElementSpec.StartTagType)); //open new paragraph after table
+
+            ElementSpec[] spec = new ElementSpec[tableSpecs.size()];
+            tableSpecs.toArray(spec);
+
+            this.insert(offset, spec);
+        }
+        catch (BadLocationException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    protected void fillRowSpecs(ArrayList tableSpecs, int rowCount, int[] colWidths) {
+        SimpleAttributeSet rowAttrs = new SimpleAttributeSet();
+        rowAttrs.addAttribute(ElementNameAttribute, ELEMENT_NAME_ROW);
+        for (int i = 0; i < rowCount; i++) {
+            ElementSpec rowStart = new ElementSpec(rowAttrs, ElementSpec.StartTagType);
+            tableSpecs.add(rowStart);
+
+            fillCellSpecs(tableSpecs, colWidths);
+
+            ElementSpec rowEnd = new ElementSpec(rowAttrs, ElementSpec.EndTagType);
+            tableSpecs.add(rowEnd);
+        }
+
+    }
+
+    protected void fillCellSpecs(ArrayList tableSpecs, int[] colWidths) {
+        for (int i = 0; i < colWidths.length; i++) {
+            SimpleAttributeSet cellAttrs = new SimpleAttributeSet();
+            cellAttrs.addAttribute(ElementNameAttribute, ELEMENT_NAME_CELL);
+            cellAttrs.addAttribute(PARAM_CELL_WIDTH, new Integer(colWidths[i]));
+            ElementSpec cellStart = new ElementSpec(cellAttrs, ElementSpec.StartTagType);
+            tableSpecs.add(cellStart);
+
+            ElementSpec parStart = new ElementSpec(new SimpleAttributeSet(), ElementSpec.StartTagType);
+            tableSpecs.add(parStart);
+            ElementSpec parContent = new ElementSpec(new SimpleAttributeSet(), ElementSpec.ContentType, "\n".toCharArray(), 0, 1);
+            tableSpecs.add(parContent);
+            ElementSpec parEnd = new ElementSpec(new SimpleAttributeSet(), ElementSpec.EndTagType);
+            tableSpecs.add(parEnd);
+            ElementSpec cellEnd = new ElementSpec(cellAttrs, ElementSpec.EndTagType);
+            tableSpecs.add(cellEnd);
+        }
+
+    }
+}
+
+import java.awt.*;
+import javax.swing.text.*;
+
+public class TableView extends BoxView {
+    public TableView(Element elem) {
+        super(elem, View.Y_AXIS);
+    }
+
+    public float getMinimumSpan(int axis) {
+        return getPreferredSpan(axis);
+    }
+
+    public float getMaximumSpan(int axis) {
+        return getPreferredSpan(axis);
+    }
+
+    public float getAlignment(int axis) {
+        return 0;
+    }
+
+    protected void paintChild(Graphics g, Rectangle alloc, int index) {
+        super.paintChild(g, alloc, index);
+        g.setColor(Color.black);
+        g.drawLine(alloc.x, alloc.y, alloc.x + alloc.width, alloc.y);
+        int lastY = alloc.y + alloc.height;
+        if (index == getViewCount() - 1) {
+            lastY--;
+        }
+        g.drawLine(alloc.x, lastY, alloc.x + alloc.width, lastY);
+    }
+}
+
+import java.awt.*;
+import javax.swing.text.*;
+
+public class RowView extends BoxView {
+    public RowView(Element elem) {
+        super(elem, View.X_AXIS);
+    }
+
+    public float getPreferredSpan(int axis) {
+        return super.getPreferredSpan(axis);
+    }
+
+    protected void layout(int width, int height) {
+        super.layout(width, height);
+    }
+
+    public float getMinimumSpan(int axis) {
+        return getPreferredSpan(axis);
+    }
+
+    public float getMaximumSpan(int axis) {
+        return getPreferredSpan(axis);
+    }
+
+    public float getAlignment(int axis) {
+        return 0;
+    }
+
+    protected void paintChild(Graphics g, Rectangle alloc, int index) {
+        super.paintChild(g, alloc, index);
+        g.setColor(Color.black);
+        int h = (int) getPreferredSpan(View.Y_AXIS) - 1;
+        g.drawLine(alloc.x, alloc.y, alloc.x, alloc.y + h);
+        g.drawLine(alloc.x + alloc.width, alloc.y, alloc.x + alloc.width, alloc.y + h);
+    }
+}
+
+import java.awt.*;
+import javax.swing.text.*;
+
+public class CellView extends BoxView {
+    public CellView(Element elem) {
+        super(elem, View.Y_AXIS);
+        setInsets((short)2,(short)2,(short)2,(short)2);
+    }
+    public float getPreferredSpan(int axis) {
+        if (axis==View.X_AXIS) {
+            return getCellWidth();
+        }
+        return super.getPreferredSpan(axis);
+    }
+    public float getMinimumSpan(int axis) {
+        return getPreferredSpan(axis);
+    }
+    public float getMaximumSpan(int axis) {
+        return getPreferredSpan(axis);
+    }
+    public float getAlignment(int axis) {
+        return 0;
+    }
+
+    public int getCellWidth() {
+        int width=100;
+        Integer i=(Integer)getAttributes().getAttribute(TableDocument.PARAM_CELL_WIDTH);
+        if (i!=null) {
+            width=i.intValue();
+        }
+        return width;
+    }
+
+import javax.swing.*;
+import javax.swing.text.*;
+
+public class Application extends JFrame {
+    JEditorPane edit = new JEditorPane();
+    public Application() {
+        super("Tables in JEditorPane example");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        edit.setEditorKit(new TableEditorKit());
+        initTableDemo();
+
+        this.getContentPane().add(new JScrollPane(edit));
+        this.setSize(500, 300);
+        this.setLocationRelativeTo(null);
+
+    }
+
+    private void initTableDemo() {
+        TableDocument doc = (TableDocument) edit.getDocument();
+        doc.insertTable(0, 2, new int[] {200, 100, 150});
+        doc.insertTable(4, 2, new int[] {100, 50});
+
+        try {
+            doc.insertString(10, "Paragraph after table.\nYou can set caret in table cell and start typing.", null);
+            doc.insertString(4, "Inner Table", null);
+            doc.insertString(3, "Cell with a nested table", null);
+            doc.insertString(0, "Table\nCell", null);
+        }
+        catch (BadLocationException ex) {
+        }
+    }
+
+    public static void main(String[] args) {
+        Application m = new Application();
+        m.setVisible(true);
+    }
+}
+
+class TableEditorKit extends StyledEditorKit {
+    ViewFactory defaultFactory = new TableFactory();
+    public ViewFactory getViewFactory() {
+        return defaultFactory;
+    }
+
+    public Document createDefaultDocument() {
+        return new TableDocument();
+    }
+}
+
+class TableFactory implements ViewFactory {
+    public View create(Element elem) {
+        String kind = elem.getName();
+        if (kind != null) {
+            if (kind.equals(AbstractDocument.ContentElementName)) {
+                return new LabelView(elem);
+            }
+            else if (kind.equals(AbstractDocument.ParagraphElementName)) {
+                return new ParagraphView(elem);
+            }
+            else if (kind.equals(AbstractDocument.SectionElementName)) {
+                return new BoxView(elem, View.Y_AXIS);
+            }
+            else if (kind.equals(StyleConstants.ComponentElementName)) {
+                return new ComponentView(elem);
+            }
+            else if (kind.equals(TableDocument.ELEMENT_NAME_TABLE)) {
+                return new TableView(elem);
+            }
+            else if (kind.equals(TableDocument.ELEMENT_NAME_ROW)) {
+                return new RowView(elem);
+            }
+            else if (kind.equals(TableDocument.ELEMENT_NAME_CELL)) {
+                return new CellView(elem);
+            }
+            else if (kind.equals(StyleConstants.IconElementName)) {
+                return new IconView(elem);
+            }
+        }
+
+        // default to text display
+        return new LabelView(elem);
+    }
+}
