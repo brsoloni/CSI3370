@@ -450,11 +450,26 @@ public class textEditorGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void newFileItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newFileItemActionPerformed
-       //Xi's features
-     getFocusedComponent().setText("");
-        setTitle(fileName);
-        saved = false;
-        saveAsDone = false;
+        // Added warning prompt
+        // If there is no words present in the current document, it doesn't warn you    
+        String text = getFocusedComponent().getText();
+        if (text.length() == 0) {
+            getFocusedComponent().setText("");
+            setTitle(fileName);
+            saved = false;
+            saveAsDone = false;
+        }
+        else {
+            if (JOptionPane.showConfirmDialog(null, "Are you sure you want to start a new document?" + "\n" + "All unsaved changes will be lost.", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                // yes option
+                getFocusedComponent().setText("");
+                setTitle(fileName);
+                saved = false;
+                saveAsDone = false;
+            } else {
+                // no option
+            }
+        }
     }//GEN-LAST:event_newFileItemActionPerformed
 
     private void printItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printItemActionPerformed
@@ -553,7 +568,7 @@ public class textEditorGUI extends javax.swing.JFrame {
 
     private void NewFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewFileButtonActionPerformed
            //Xi's features
-     getFocusedComponent().setText("");
+        getFocusedComponent().setText("");
         setTitle(fileName);
         saved = false;
         saveAsDone = false;
