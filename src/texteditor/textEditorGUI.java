@@ -170,6 +170,11 @@ public class textEditorGUI extends javax.swing.JFrame {
         openFileButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         openFileButton.setMaximumSize(new java.awt.Dimension(35, 50));
         openFileButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        openFileButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openFileButtonActionPerformed(evt);
+            }
+        });
         jToolBar.add(openFileButton);
 
         HyperLinkQuickButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/texteditor.Icons/save_file.png"))); // NOI18N
@@ -589,7 +594,7 @@ public class textEditorGUI extends javax.swing.JFrame {
        
        catch (IOException e){
            System.out.println("File Not Found!");
-};
+        };
     }//GEN-LAST:event_openFileItemActionPerformed
 
     private void saveItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveItemActionPerformed
@@ -713,6 +718,31 @@ public class textEditorGUI extends javax.swing.JFrame {
         Font f1 = new Font(Font.SANS_SERIF ,Font.ITALIC, 11);
         textPane.setFont(f1);
     }//GEN-LAST:event_fontItalicButtonActionPerformed
+
+    private void openFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openFileButtonActionPerformed
+        //Xi's features
+        FileDialog fileDialog = new FileDialog(textEditorGUI.this, "Open File", FileDialog.LOAD);
+        fileDialog.setVisible(true);
+        if(fileDialog.getFile()!=null){
+            fileName = fileDialog.getDirectory()+ fileDialog.getFile();
+            setTitle(fileName);
+        }
+        try {
+            BufferedReader reader =new BufferedReader(new FileReader(fileName));
+            StringBuilder sb = new StringBuilder();
+           
+            String line = null;
+            while((line = reader.readLine())!=null){
+                sb.append(line+ "\n");
+                textPane.setText(sb.toString());
+            }
+            reader.close();
+            }
+       
+        catch (IOException e){
+            System.out.println("File Not Found!");
+        };
+    }//GEN-LAST:event_openFileButtonActionPerformed
 
     
     
