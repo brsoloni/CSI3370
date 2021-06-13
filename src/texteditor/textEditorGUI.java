@@ -1,5 +1,16 @@
+/*
+    SmartPad, Copyright 2021
+    Created by:
+    Brent Soloniewicz
+    Nathanial Matovski
+    Ellis Mouton
+    Mahmudur Rahman
+    Xi Song
+    Cameron Jordan
+*/
 package texteditor;
 
+// ------ ------ Imports ------ ------
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Event;
@@ -43,27 +54,31 @@ import javax.swing.text.html.HTMLEditorKit;
 //import static sun.management.Agent.error;
 
 public class textEditorGUI extends javax.swing.JFrame {
-    String fileName;
-    private Color clrhighlit;
-    private Color highlightColor = Color.YELLOW;
-    // Save file variables
+    // ------ ------ Variable Declarations ------ ------
+    
+    // ------ Save file variables ------
+    
     private int numSavedSpaces = 0;
     private boolean saved = true;
     private boolean saveAsDone = false;
     private boolean sameLocation = false;
     private boolean splitsSaved = true;
     private boolean newDifLocation = false;
+    String fileName; // Name of File
     private File f[] = new File[100];
-    private String baseName = "";
+    private String baseName = ""; //Default File Name
     private JFileChooser[] saveChooserArr = new JFileChooser[100];
     private StyledDocument docArr[] = new StyledDocument[100];
     private HTMLEditorKit kitArr[] = new HTMLEditorKit[100];
     private BufferedOutputStream stream[] = new BufferedOutputStream[100];
     private int option;
-     int indVWS = 0;
-     private JTextPane activePane;
-     private javax.swing.JTextPane[] textArrV = new javax.swing.JTextPane[100];
-    // Cut, copy, paste variables
+    
+    // ------ JTextPane Variables ------
+    int indVWS = 0;
+    private JTextPane activePane;
+    private javax.swing.JTextPane[] textArrV = new javax.swing.JTextPane[100];
+    
+    // ------ Cut, copy, paste variables ------
     private int dot;
     private char[] character;
     private AttributeSet attributes[];
@@ -71,9 +86,18 @@ public class textEditorGUI extends javax.swing.JFrame {
     private CutAction cutAction = null;
     private CopyAction copyAction = null;
     private PasteAction pasteAction = null;
+    // Keystroke-Specific
     private KeyStroke cutKeystroke = KeyStroke.getKeyStroke(KeyEvent.VK_X, Event.CTRL_MASK);
     private KeyStroke copyKeystroke = KeyStroke.getKeyStroke(KeyEvent.VK_C, Event.CTRL_MASK);
     private KeyStroke pasteKeystroke = KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK);
+    
+    // ------ Highlighter variables ------
+    private Color clrhighlit;
+    private Color highlightColor = Color.YELLOW;
+    
+    
+    
+    
     public textEditorGUI() {
         initComponents();
         //textPane.setContentType("text/html");
@@ -143,14 +167,22 @@ public class textEditorGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(102, 102, 102));
+
+        searchButton.setBackground(new java.awt.Color(204, 204, 204));
         searchButton.setText("Search");
 
+        textPane.setBackground(new java.awt.Color(240, 240, 240));
+        textPane.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jScrollPane1.setViewportView(textPane);
 
+        jToolBar.setBackground(new java.awt.Color(102, 102, 102));
+        jToolBar.setBorder(null);
         jToolBar.setFloatable(false);
         jToolBar.setRollover(true);
         jToolBar.add(jSeparator4);
 
+        NewFileButton.setBackground(new java.awt.Color(153, 153, 153));
         NewFileButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/texteditor.Icons/newFile.png"))); // NOI18N
         NewFileButton.setFocusable(false);
         NewFileButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -164,6 +196,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         jToolBar.add(NewFileButton);
 
+        openFileButton.setBackground(new java.awt.Color(153, 153, 153));
         openFileButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/texteditor.Icons/document_open.png"))); // NOI18N
         openFileButton.setToolTipText("");
         openFileButton.setFocusable(false);
@@ -177,6 +210,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         jToolBar.add(openFileButton);
 
+        HyperLinkQuickButton.setBackground(new java.awt.Color(153, 153, 153));
         HyperLinkQuickButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/texteditor.Icons/save_file.png"))); // NOI18N
         HyperLinkQuickButton.setFocusable(false);
         HyperLinkQuickButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -190,6 +224,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         jToolBar.add(HyperLinkQuickButton);
         jToolBar.add(jSeparator3);
 
+        copyButton.setBackground(new java.awt.Color(153, 153, 153));
         copyButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/texteditor.Icons/copy.png"))); // NOI18N
         copyButton.setFocusable(false);
         copyButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -202,6 +237,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         jToolBar.add(copyButton);
 
+        pasteButton.setBackground(new java.awt.Color(153, 153, 153));
         pasteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/texteditor.Icons/paste.png"))); // NOI18N
         pasteButton.setFocusable(false);
         pasteButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -214,6 +250,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         jToolBar.add(pasteButton);
 
+        cutButton.setBackground(new java.awt.Color(153, 153, 153));
         cutButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/texteditor.Icons/clipboard_cut.png"))); // NOI18N
         cutButton.setFocusable(false);
         cutButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -228,6 +265,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         jToolBar.add(cutButton);
         jToolBar.add(jSeparator1);
 
+        highLightQuickButton.setBackground(new java.awt.Color(153, 153, 153));
         highLightQuickButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/texteditor.Icons/highlight_black.png"))); // NOI18N
         highLightQuickButton.setFocusable(false);
         highLightQuickButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -239,6 +277,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         jToolBar.add(highLightQuickButton);
 
+        clearHighLighterQuickButton.setBackground(new java.awt.Color(153, 153, 153));
         clearHighLighterQuickButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/texteditor.Icons/clear_highlight_black.png"))); // NOI18N
         clearHighLighterQuickButton.setFocusable(false);
         clearHighLighterQuickButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -251,6 +290,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         jToolBar.add(clearHighLighterQuickButton);
         jToolBar.add(jSeparator2);
 
+        fontBoldButton.setBackground(new java.awt.Color(204, 204, 204));
         fontBoldButton.setText("bold");
         fontBoldButton.setFocusable(false);
         fontBoldButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -262,6 +302,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         jToolBar.add(fontBoldButton);
 
+        fontUnderlineButton.setBackground(new java.awt.Color(204, 204, 204));
         fontUnderlineButton.setText("underline");
         fontUnderlineButton.setFocusable(false);
         fontUnderlineButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -273,6 +314,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         jToolBar.add(fontUnderlineButton);
 
+        fontItalicButton.setBackground(new java.awt.Color(204, 204, 204));
         fontItalicButton.setText("italic");
         fontItalicButton.setFocusable(false);
         fontItalicButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -300,7 +342,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchContent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -308,6 +350,9 @@ public class textEditorGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 791, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
+
+        jMenuBar1.setBackground(new java.awt.Color(153, 153, 153));
+        jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         FileMenu.setText("File");
 
@@ -654,9 +699,9 @@ public class textEditorGUI extends javax.swing.JFrame {
     private void highLightQuickButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_highLightQuickButtonActionPerformed
         int start = textPane.getSelectionStart();
         int end = textPane.getSelectionEnd();
-        int selectedLength =end-start;
+        int selectedLength = end-start;
         StyledDocument style = textPane.getStyledDocument();
-        AttributeSet oldset =style.getCharacterElement(end-1).getAttributes();
+        AttributeSet oldset = style.getCharacterElement(end-1).getAttributes();
         StyleContext sc = StyleContext.getDefaultStyleContext();
         AttributeSet s = sc.addAttribute(oldset, StyleConstants.Background, highlightColor );
         style.setCharacterAttributes(start, selectedLength, s, true);
@@ -675,7 +720,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         AttributeSet oldest = style.getCharacterElement(end-1).getAttributes();
         StyleContext sc = StyleContext.getDefaultStyleContext();
         Color backgroundClr = textPane.getBackground();
-        AttributeSet s =sc.addAttribute(oldest, StyleConstants.Background, backgroundClr);
+        AttributeSet s = sc.addAttribute(oldest, StyleConstants.Background, backgroundClr);
         style.setCharacterAttributes(start, selectedLength, s, true);
     }//GEN-LAST:event_clearHighLighterQuickButtonActionPerformed
 
@@ -702,6 +747,7 @@ public class textEditorGUI extends javax.swing.JFrame {
     private void fontBoldButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontBoldButtonActionPerformed
         // Cam
         Font f1 = new Font(Font.SANS_SERIF ,Font.BOLD, 11);
+        //String selectedText = textPane.getSelectedText();
         textPane.setFont(f1);
     }//GEN-LAST:event_fontBoldButtonActionPerformed
 
