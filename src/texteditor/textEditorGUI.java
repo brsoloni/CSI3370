@@ -110,6 +110,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JToolBar.Separator();
         fontBoldButton = new javax.swing.JButton();
         fontUnderlineButton = new javax.swing.JButton();
+        fontItalicButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
         newFileItem = new javax.swing.JMenuItem();
@@ -266,6 +267,17 @@ public class textEditorGUI extends javax.swing.JFrame {
             }
         });
         jToolBar.add(fontUnderlineButton);
+
+        fontItalicButton.setText("italic");
+        fontItalicButton.setFocusable(false);
+        fontItalicButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        fontItalicButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        fontItalicButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fontItalicButtonActionPerformed(evt);
+            }
+        });
+        jToolBar.add(fontItalicButton);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -696,6 +708,12 @@ public class textEditorGUI extends javax.swing.JFrame {
         textPane.setFont(f1.deriveFont(attributes));
     }//GEN-LAST:event_fontUnderlineButtonActionPerformed
 
+    private void fontItalicButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontItalicButtonActionPerformed
+        // Cam
+        Font f1 = new Font(Font.SANS_SERIF ,Font.ITALIC, 11);
+        textPane.setFont(f1);
+    }//GEN-LAST:event_fontItalicButtonActionPerformed
+
     
     
     /**
@@ -749,6 +767,7 @@ public class textEditorGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem cutItem;
     private javax.swing.JMenuItem exitItem;
     private javax.swing.JButton fontBoldButton;
+    private javax.swing.JButton fontItalicButton;
     private javax.swing.JButton fontUnderlineButton;
     private javax.swing.JMenu formatMenu;
     private javax.swing.JMenuItem headAndFootItem;
