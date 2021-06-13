@@ -4,9 +4,11 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Event;
 import java.awt.FileDialog;
+import java.awt.Font;
 import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.font.TextAttribute;
 import java.awt.print.PrinterException;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -17,6 +19,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.MessageFormat;
+import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -105,6 +108,8 @@ public class textEditorGUI extends javax.swing.JFrame {
         highLightQuickButton = new javax.swing.JButton();
         clearHighLighterQuickButton = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
+        fontBoldButton = new javax.swing.JButton();
+        fontUnderlineButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
         newFileItem = new javax.swing.JMenuItem();
@@ -240,13 +245,36 @@ public class textEditorGUI extends javax.swing.JFrame {
         jToolBar.add(clearHighLighterQuickButton);
         jToolBar.add(jSeparator2);
 
+        fontBoldButton.setText("bold");
+        fontBoldButton.setFocusable(false);
+        fontBoldButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        fontBoldButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        fontBoldButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fontBoldButtonActionPerformed(evt);
+            }
+        });
+        jToolBar.add(fontBoldButton);
+
+        fontUnderlineButton.setText("underline");
+        fontUnderlineButton.setFocusable(false);
+        fontUnderlineButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        fontUnderlineButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        fontUnderlineButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fontUnderlineButtonActionPerformed(evt);
+            }
+        });
+        jToolBar.add(fontUnderlineButton);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(searchContent, javax.swing.GroupLayout.PREFERRED_SIZE, 603, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(searchContent, javax.swing.GroupLayout.PREFERRED_SIZE, 593, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(searchButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -654,6 +682,20 @@ public class textEditorGUI extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this,"SmartPad, Copyright 2021" + "\n" + "Created By: " + "\n" + "Brent Soloniewicz" + "\n" + "Nathanial Matovski" + "\n" + "Ellis Mouton" + "\n" + "Mahmudur Rahman" + "\n" + "Cameron Jordan" + "\n" + "Xi Song");  
     }//GEN-LAST:event_aboutSmartPadActionPerformed
 
+    private void fontBoldButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontBoldButtonActionPerformed
+        // Cam
+        Font f1 = new Font(Font.SANS_SERIF ,Font.BOLD, 11);
+        textPane.setFont(f1);
+    }//GEN-LAST:event_fontBoldButtonActionPerformed
+
+    private void fontUnderlineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontUnderlineButtonActionPerformed
+        // TODO add your handling code here:
+        Font f1 = textPane.getFont();
+        Map attributes = f1.getAttributes();
+        attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+        textPane.setFont(f1.deriveFont(attributes));
+    }//GEN-LAST:event_fontUnderlineButtonActionPerformed
+
     
     
     /**
@@ -706,6 +748,8 @@ public class textEditorGUI extends javax.swing.JFrame {
     private javax.swing.JButton cutButton;
     private javax.swing.JMenuItem cutItem;
     private javax.swing.JMenuItem exitItem;
+    private javax.swing.JButton fontBoldButton;
+    private javax.swing.JButton fontUnderlineButton;
     private javax.swing.JMenu formatMenu;
     private javax.swing.JMenuItem headAndFootItem;
     private javax.swing.JMenuItem highLightColorButton;

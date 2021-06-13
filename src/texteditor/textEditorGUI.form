@@ -275,7 +275,8 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="searchContent" min="-2" pref="603" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="searchContent" min="-2" pref="593" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="searchButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
@@ -453,6 +454,28 @@
               </Events>
             </Component>
             <Component class="javax.swing.JToolBar$Separator" name="jSeparator2">
+            </Component>
+            <Component class="javax.swing.JButton" name="fontBoldButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="bold"/>
+                <Property name="focusable" type="boolean" value="false"/>
+                <Property name="horizontalTextPosition" type="int" value="0"/>
+                <Property name="verticalTextPosition" type="int" value="3"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fontBoldButtonActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="fontUnderlineButton">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="underline"/>
+                <Property name="focusable" type="boolean" value="false"/>
+                <Property name="horizontalTextPosition" type="int" value="0"/>
+                <Property name="verticalTextPosition" type="int" value="3"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fontUnderlineButtonActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
