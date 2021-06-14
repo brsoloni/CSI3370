@@ -129,6 +129,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         cutButton = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
         highLightQuickButton = new javax.swing.JButton();
+        highLightColorQuickButton = new javax.swing.JButton();
         clearHighLighterQuickButton = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
         fontBoldButton = new javax.swing.JButton();
@@ -296,6 +297,22 @@ public class textEditorGUI extends javax.swing.JFrame {
             }
         });
         jToolBar.add(highLightQuickButton);
+
+        highLightColorQuickButton.setBackground(new java.awt.Color(51, 51, 51));
+        highLightColorQuickButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/texteditor.Icons/highlight-color.png"))); // NOI18N
+        highLightColorQuickButton.setToolTipText("Select the Highlighter color");
+        highLightColorQuickButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        highLightColorQuickButton.setFocusable(false);
+        highLightColorQuickButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        highLightColorQuickButton.setMaximumSize(new java.awt.Dimension(39, 50));
+        highLightColorQuickButton.setMinimumSize(new java.awt.Dimension(39, 50));
+        highLightColorQuickButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        highLightColorQuickButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                highLightColorQuickButtonActionPerformed(evt);
+            }
+        });
+        jToolBar.add(highLightColorQuickButton);
 
         clearHighLighterQuickButton.setBackground(new java.awt.Color(51, 51, 51));
         clearHighLighterQuickButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/texteditor.Icons/clear_highlight_black.png"))); // NOI18N
@@ -866,6 +883,12 @@ public class textEditorGUI extends javax.swing.JFrame {
         textPane.setFont(plain);
     }//GEN-LAST:event_fontNormalButtonActionPerformed
 
+    private void highLightColorQuickButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_highLightColorQuickButtonActionPerformed
+        // Cam
+        Color newColor = JColorChooser.showDialog(this, "Select Highlight Color", clrhighlit);
+        highlightColor = newColor;
+    }//GEN-LAST:event_highLightColorQuickButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -923,6 +946,7 @@ public class textEditorGUI extends javax.swing.JFrame {
     private javax.swing.JMenu formatMenu;
     private javax.swing.JMenuItem headAndFootItem;
     private javax.swing.JMenuItem highLightColorButton;
+    private javax.swing.JButton highLightColorQuickButton;
     private javax.swing.JButton highLightQuickButton;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
