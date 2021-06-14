@@ -856,8 +856,9 @@ public class textEditorGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_openFileButtonActionPerformed
 
     private void fontNormalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontNormalButtonActionPerformed
-        // TODO add your handling code here:
-        
+        // Mahmudur's features
+        Font plain = new Font(Font.SANS_SERIF, Font.PLAIN , 11);
+        textPane.setFont(plain);
     }//GEN-LAST:event_fontNormalButtonActionPerformed
 
     /**
