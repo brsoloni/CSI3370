@@ -11,16 +11,18 @@
 package texteditor;
 
 // ------ ------ Imports ------ ------
+// ------ AWT Imports ------
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Event;
-import java.awt.FileDialog;
-import java.awt.Font;
-import java.awt.KeyboardFocusManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.FileDialog;
+import java.awt.Font;
 import java.awt.font.TextAttribute;
+import java.awt.KeyboardFocusManager;
 import java.awt.print.PrinterException;
+// ------ IO Imports ------
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
@@ -29,11 +31,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.MessageFormat;
-import java.util.Map;
-import java.util.StringTokenizer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+// ------ Swing Imports ------
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import static javax.swing.Action.MNEMONIC_KEY;
@@ -51,8 +49,15 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
 import javax.swing.text.html.HTMLEditorKit;
-//import static sun.management.Agent.error;
+// ------ Text Imports ------
+import java.text.MessageFormat;
+// ------ Java Utilities Imports ------
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.Map;
+import java.util.StringTokenizer;
 
+// textEditorGUI class
 public class textEditorGUI extends javax.swing.JFrame {
     // ------ ------ Variable Declarations ------ ------
     
