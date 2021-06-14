@@ -102,7 +102,7 @@ public class textEditorGUI extends javax.swing.JFrame {
     public textEditorGUI() {
         // Mahmudur's features
         initComponents();
-        textPane.setContentType("text/html");
+         // textPane.setContentType("text/html");
         textPane.requestFocusInWindow();
         textArrV[0] = textPane;
 
@@ -857,6 +857,7 @@ public class textEditorGUI extends javax.swing.JFrame {
 
     private void fontNormalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontNormalButtonActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_fontNormalButtonActionPerformed
 
     /**
