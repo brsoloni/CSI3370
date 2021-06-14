@@ -124,8 +124,8 @@ public class textEditorGUI extends javax.swing.JFrame {
         openFileButton = new javax.swing.JButton();
         HyperLinkQuickButton = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JToolBar.Separator();
-        copyButton = new javax.swing.JButton();
         pasteButton = new javax.swing.JButton();
+        copyButton = new javax.swing.JButton();
         cutButton = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
         highLightQuickButton = new javax.swing.JButton();
@@ -184,6 +184,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         jToolBar.setBorder(null);
         jToolBar.setFloatable(false);
         jToolBar.setRollover(true);
+        jToolBar.setMargin(new java.awt.Insets(0, 20, 0, 0));
 
         NewFileButton.setBackground(new java.awt.Color(51, 51, 51));
         NewFileButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/texteditor.Icons/newFile.png"))); // NOI18N
@@ -191,6 +192,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         NewFileButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         NewFileButton.setFocusable(false);
         NewFileButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        NewFileButton.setMargin(new java.awt.Insets(2, 34, 2, 14));
         NewFileButton.setMaximumSize(new java.awt.Dimension(30, 50));
         NewFileButton.setMinimumSize(new java.awt.Dimension(30, 40));
         NewFileButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -232,21 +234,6 @@ public class textEditorGUI extends javax.swing.JFrame {
         jToolBar.add(HyperLinkQuickButton);
         jToolBar.add(jSeparator3);
 
-        copyButton.setBackground(new java.awt.Color(51, 51, 51));
-        copyButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/texteditor.Icons/copy.png"))); // NOI18N
-        copyButton.setToolTipText("Copy the currently selected text");
-        copyButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        copyButton.setFocusable(false);
-        copyButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        copyButton.setMaximumSize(new java.awt.Dimension(35, 50));
-        copyButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        copyButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                copyButtonActionPerformed(evt);
-            }
-        });
-        jToolBar.add(copyButton);
-
         pasteButton.setBackground(new java.awt.Color(51, 51, 51));
         pasteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/texteditor.Icons/paste.png"))); // NOI18N
         pasteButton.setToolTipText("Paste from clipboard");
@@ -261,6 +248,21 @@ public class textEditorGUI extends javax.swing.JFrame {
             }
         });
         jToolBar.add(pasteButton);
+
+        copyButton.setBackground(new java.awt.Color(51, 51, 51));
+        copyButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/texteditor.Icons/copy.png"))); // NOI18N
+        copyButton.setToolTipText("Copy the currently selected text");
+        copyButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        copyButton.setFocusable(false);
+        copyButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        copyButton.setMaximumSize(new java.awt.Dimension(35, 50));
+        copyButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        copyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                copyButtonActionPerformed(evt);
+            }
+        });
+        jToolBar.add(copyButton);
 
         cutButton.setBackground(new java.awt.Color(51, 51, 51));
         cutButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/texteditor.Icons/clipboard_cut.png"))); // NOI18N
@@ -387,9 +389,12 @@ public class textEditorGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(searchButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jToolBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -404,7 +409,7 @@ public class textEditorGUI extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 791, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jMenuBar1.setBackground(new java.awt.Color(153, 153, 153));
+        jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
         jMenuBar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         FileMenu.setText("File");
