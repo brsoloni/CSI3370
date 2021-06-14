@@ -101,8 +101,7 @@ public class textEditorGUI extends javax.swing.JFrame {
 
     public textEditorGUI() {
         initComponents();
-        //textPane.setContentType("text/html");
-        // textPane.setText("<html>789645</html>"); //Your whole html here..
+        textPane.setContentType("text/html");
         textPane.requestFocusInWindow();
         textArrV[0] = textPane;
 
