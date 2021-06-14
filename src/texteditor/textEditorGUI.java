@@ -100,6 +100,7 @@ public class textEditorGUI extends javax.swing.JFrame {
     private Color highlightColor = Color.YELLOW;
 
     public textEditorGUI() {
+        // Mahmudur's features
         initComponents();
         textPane.setContentType("text/html");
         textPane.requestFocusInWindow();
@@ -705,7 +706,7 @@ public class textEditorGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_openFileItemActionPerformed
 
     private void saveItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveItemActionPerformed
-        // Xi's features
+        // Mahmudur's features
         if (saveAsDone == false) {
             saveAs();
         } else {
@@ -714,7 +715,7 @@ public class textEditorGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_saveItemActionPerformed
 
     private void saveAsItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveAsItemActionPerformed
-        // Xi's features
+        // Mahmudurs's features
         saveAs();
     }//GEN-LAST:event_saveAsItemActionPerformed
 
@@ -769,6 +770,7 @@ public class textEditorGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_highLightQuickButtonActionPerformed
 
     private void saveToolbarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveToolbarItemActionPerformed
+        // Mahmudur's features
         if (saveAsDone == false) {
             saveAs();
         } else {
