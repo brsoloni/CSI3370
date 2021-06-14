@@ -7,7 +7,7 @@
     Mahmudur Rahman
     Xi Song
     Cameron Jordan
-*/
+ */
 package texteditor;
 
 // ------ ------ Imports ------ ------
@@ -60,9 +60,8 @@ import java.util.StringTokenizer;
 // textEditorGUI class
 public class textEditorGUI extends javax.swing.JFrame {
     // ------ ------ Variable Declarations ------ ------
-    
+
     // ------ Save file variables ------
-    
     private int numSavedSpaces = 0;
     private boolean saved = true;
     private boolean saveAsDone = false;
@@ -77,12 +76,12 @@ public class textEditorGUI extends javax.swing.JFrame {
     private HTMLEditorKit kitArr[] = new HTMLEditorKit[100];
     private BufferedOutputStream stream[] = new BufferedOutputStream[100];
     private int option;
-    
+
     // ------ JTextPane Variables ------
     int indVWS = 0;
     private JTextPane activePane;
     private javax.swing.JTextPane[] textArrV = new javax.swing.JTextPane[100];
-    
+
     // ------ Cut, copy, paste variables ------
     private int dot;
     private char[] character;
@@ -95,24 +94,20 @@ public class textEditorGUI extends javax.swing.JFrame {
     private KeyStroke cutKeystroke = KeyStroke.getKeyStroke(KeyEvent.VK_X, Event.CTRL_MASK);
     private KeyStroke copyKeystroke = KeyStroke.getKeyStroke(KeyEvent.VK_C, Event.CTRL_MASK);
     private KeyStroke pasteKeystroke = KeyStroke.getKeyStroke(KeyEvent.VK_V, Event.CTRL_MASK);
-    
+
     // ------ Highlighter variables ------
     private Color clrhighlit;
     private Color highlightColor = Color.YELLOW;
-    
-    
-    
-    
+
     public textEditorGUI() {
         initComponents();
         //textPane.setContentType("text/html");
-       // textPane.setText("<html>789645</html>"); //Your whole html here..
-       textPane.requestFocusInWindow();
-       textArrV[0] = textPane;
-       
+        // textPane.setText("<html>789645</html>"); //Your whole html here..
+        textPane.requestFocusInWindow();
+        textArrV[0] = textPane;
+
     }
 
- 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -231,7 +226,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         HyperLinkQuickButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         HyperLinkQuickButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                HyperLinkQuickButtonActionPerformed(evt);
+                saveToolbarItemActionPerformed(evt);
             }
         });
         jToolBar.add(HyperLinkQuickButton);
@@ -622,8 +617,7 @@ public class textEditorGUI extends javax.swing.JFrame {
             setTitle(fileName);
             saved = false;
             saveAsDone = false;
-        }
-        else {
+        } else {
             if (JOptionPane.showConfirmDialog(null, "Are you sure you want to start a new document?" + "\n" + "All unsaved changes will be lost.", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                 // yes option
                 getFocusedComponent().setText("");
@@ -638,24 +632,21 @@ public class textEditorGUI extends javax.swing.JFrame {
 
     private void printItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printItemActionPerformed
         try {
-      
+
             String newfter = HeaderFooterFrame.newFooter;
-            String newhder = HeaderFooterFrame.newHeader;          
+            String newhder = HeaderFooterFrame.newHeader;
             MessageFormat footer = createFormat(newfter);
             MessageFormat header = createFormat(newhder);
-          
-        
-            
-            Boolean complete= textPane.print(header,footer);
-           if(complete){
-                JOptionPane.showMessageDialog(null, "Done printing","Information",JOptionPane.INFORMATION_MESSAGE);
-            }
-            else{
+
+            Boolean complete = textPane.print(header, footer);
+            if (complete) {
+                JOptionPane.showMessageDialog(null, "Done printing", "Information", JOptionPane.INFORMATION_MESSAGE);
+            } else {
                 //JOptionPane.showMessageDialog(null,"Job cancelled","Information",JOptionPane.INFORMATION_MESSAGE);
-            } } catch (PrinterException ex) {
+            }
+        } catch (PrinterException ex) {
             Logger.getLogger(textEditorGUI.class.getName()).log(Level.SEVERE, null, ex);
-          
-           
+
         }
     }//GEN-LAST:event_printItemActionPerformed
 
@@ -692,33 +683,31 @@ public class textEditorGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_selectAllItemActionPerformed
 
     private void openFileItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openFileItemActionPerformed
-       //Xi's features
-       FileDialog fileDialog = new FileDialog(textEditorGUI.this, "Open File", FileDialog.LOAD);
-       fileDialog.setVisible(true);
-       if(fileDialog.getFile()!=null){
-           fileName = fileDialog.getDirectory()+ fileDialog.getFile();
-           setTitle(fileName);
-       }
-       try {
-           BufferedReader reader =new BufferedReader(new FileReader(fileName));
-           StringBuilder sb = new StringBuilder();
-           
-           String line = null;
-           while((line = reader.readLine())!=null){
-               sb.append(line+ "\n");
-               textPane.setText(sb.toString());
-           }
-           reader.close();
-           }
-       
-       catch (IOException e){
-           System.out.println("File Not Found!");
+        //Xi's features
+        FileDialog fileDialog = new FileDialog(textEditorGUI.this, "Open File", FileDialog.LOAD);
+        fileDialog.setVisible(true);
+        if (fileDialog.getFile() != null) {
+            fileName = fileDialog.getDirectory() + fileDialog.getFile();
+            setTitle(fileName);
+        }
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            StringBuilder sb = new StringBuilder();
+
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                sb.append(line + "\n");
+                textPane.setText(sb.toString());
+            }
+            reader.close();
+        } catch (IOException e) {
+            System.out.println("File Not Found!");
         };
     }//GEN-LAST:event_openFileItemActionPerformed
 
     private void saveItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveItemActionPerformed
         // Xi's features
-         if (saveAsDone == false){
+        if (saveAsDone == false) {
             saveAs();
         } else {
             save();
@@ -726,8 +715,8 @@ public class textEditorGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_saveItemActionPerformed
 
     private void saveAsItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveAsItemActionPerformed
-      // Xi's features
-       saveAs();
+        // Xi's features
+        saveAs();
     }//GEN-LAST:event_saveAsItemActionPerformed
 
     private void NewFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewFileButtonActionPerformed
@@ -739,8 +728,7 @@ public class textEditorGUI extends javax.swing.JFrame {
             setTitle(fileName);
             saved = false;
             saveAsDone = false;
-        }
-        else {
+        } else {
             if (JOptionPane.showConfirmDialog(null, "Are you sure you want to start a new document?" + "\n" + "All unsaved changes will be lost.", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                 // yes option
                 getFocusedComponent().setText("");
@@ -754,44 +742,48 @@ public class textEditorGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_NewFileButtonActionPerformed
 
     private void wordCounterItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wordCounterItemActionPerformed
-         //Xi's feature
+        //Xi's feature
         String text = getFocusedComponent().getText();
-        JOptionPane.showMessageDialog(this,"Total words: "+ new StringTokenizer(text).countTokens()); 
+        JOptionPane.showMessageDialog(this, "Total words: " + new StringTokenizer(text).countTokens());
     }//GEN-LAST:event_wordCounterItemActionPerformed
 
     private void headAndFootItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_headAndFootItemActionPerformed
         //Xi‘s feature
-       new HeaderFooterFrame().setVisible(true);
+        new HeaderFooterFrame().setVisible(true);
     }//GEN-LAST:event_headAndFootItemActionPerformed
 
     private void highLightColorButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_highLightColorButtonActionPerformed
         // Xi's feature
-        Color newColor =JColorChooser.showDialog(this,"Select Highlight Color", clrhighlit);        
+        Color newColor = JColorChooser.showDialog(this, "Select Highlight Color", clrhighlit);
         highlightColor = newColor;
     }//GEN-LAST:event_highLightColorButtonActionPerformed
 
     private void highLightQuickButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_highLightQuickButtonActionPerformed
         int start = textPane.getSelectionStart();
         int end = textPane.getSelectionEnd();
-        int selectedLength = end-start;
+        int selectedLength = end - start;
         StyledDocument style = textPane.getStyledDocument();
-        AttributeSet oldset = style.getCharacterElement(end-1).getAttributes();
+        AttributeSet oldset = style.getCharacterElement(end - 1).getAttributes();
         StyleContext sc = StyleContext.getDefaultStyleContext();
-        AttributeSet s = sc.addAttribute(oldset, StyleConstants.Background, highlightColor );
+        AttributeSet s = sc.addAttribute(oldset, StyleConstants.Background, highlightColor);
         style.setCharacterAttributes(start, selectedLength, s, true);
     }//GEN-LAST:event_highLightQuickButtonActionPerformed
 
-    private void HyperLinkQuickButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HyperLinkQuickButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_HyperLinkQuickButtonActionPerformed
+    private void saveToolbarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveToolbarItemActionPerformed
+        if (saveAsDone == false) {
+            saveAs();
+        } else {
+            save();
+        }
+    }//GEN-LAST:event_saveToolbarItemActionPerformed
 
     private void clearHighLighterQuickButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearHighLighterQuickButtonActionPerformed
         // Xi's feature
-        int start =  textPane.getSelectionStart();
+        int start = textPane.getSelectionStart();
         int end = textPane.getSelectionEnd();
         int selectedLength = end - start;
         StyledDocument style = textPane.getStyledDocument();
-        AttributeSet oldest = style.getCharacterElement(end-1).getAttributes();
+        AttributeSet oldest = style.getCharacterElement(end - 1).getAttributes();
         StyleContext sc = StyleContext.getDefaultStyleContext();
         Color backgroundClr = textPane.getBackground();
         AttributeSet s = sc.addAttribute(oldest, StyleConstants.Background, backgroundClr);
@@ -804,23 +796,23 @@ public class textEditorGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_pasteButtonActionPerformed
 
     private void copyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyButtonActionPerformed
-         // Xi's feature
+        // Xi's feature
         textPane.copy();
     }//GEN-LAST:event_copyButtonActionPerformed
 
     private void cutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cutButtonActionPerformed
-         // Xi's features
+        // Xi's features
         textPane.cut();
     }//GEN-LAST:event_cutButtonActionPerformed
 
     private void aboutSmartPadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aboutSmartPadActionPerformed
         // Cam
-        JOptionPane.showMessageDialog(this,"SmartPad, Copyright 2021" + "\n" + "Created By: " + "\n" + "Brent Soloniewicz" + "\n" + "Nathanial Matovski" + "\n" + "Ellis Mouton" + "\n" + "Mahmudur Rahman" + "\n" + "Cameron Jordan" + "\n" + "Xi Song");  
+        JOptionPane.showMessageDialog(this, "SmartPad, Copyright 2021" + "\n" + "Created By: " + "\n" + "Brent Soloniewicz" + "\n" + "Nathanial Matovski" + "\n" + "Ellis Mouton" + "\n" + "Mahmudur Rahman" + "\n" + "Cameron Jordan" + "\n" + "Xi Song");
     }//GEN-LAST:event_aboutSmartPadActionPerformed
 
     private void fontBoldButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontBoldButtonActionPerformed
         // Cam
-        Font f1 = new Font(Font.SANS_SERIF ,Font.BOLD, 11);
+        Font f1 = new Font(Font.SANS_SERIF, Font.BOLD, 11);
         //String selectedText = textPane.getSelectedText();
         textPane.setFont(f1);
     }//GEN-LAST:event_fontBoldButtonActionPerformed
@@ -835,7 +827,7 @@ public class textEditorGUI extends javax.swing.JFrame {
 
     private void fontItalicButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontItalicButtonActionPerformed
         // Cam
-        Font f1 = new Font(Font.SANS_SERIF ,Font.ITALIC, 11);
+        Font f1 = new Font(Font.SANS_SERIF, Font.ITALIC, 11);
         textPane.setFont(f1);
     }//GEN-LAST:event_fontItalicButtonActionPerformed
 
@@ -843,23 +835,21 @@ public class textEditorGUI extends javax.swing.JFrame {
         //Xi's features
         FileDialog fileDialog = new FileDialog(textEditorGUI.this, "Open File", FileDialog.LOAD);
         fileDialog.setVisible(true);
-        if(fileDialog.getFile()!=null){
-            fileName = fileDialog.getDirectory()+ fileDialog.getFile();
+        if (fileDialog.getFile() != null) {
+            fileName = fileDialog.getDirectory() + fileDialog.getFile();
             setTitle(fileName);
         }
         try {
-            BufferedReader reader =new BufferedReader(new FileReader(fileName));
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
             StringBuilder sb = new StringBuilder();
-           
+
             String line = null;
-            while((line = reader.readLine())!=null){
-                sb.append(line+ "\n");
+            while ((line = reader.readLine()) != null) {
+                sb.append(line + "\n");
                 textPane.setText(sb.toString());
             }
             reader.close();
-            }
-       
-        catch (IOException e){
+        } catch (IOException e) {
             System.out.println("File Not Found!");
         };
     }//GEN-LAST:event_openFileButtonActionPerformed
@@ -868,8 +858,6 @@ public class textEditorGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_fontNormalButtonActionPerformed
 
-    
-    
     /**
      * @param args the command line arguments
      */
@@ -956,13 +944,13 @@ public class textEditorGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem undoItem;
     private javax.swing.JMenuItem wordCounterItem;
     // End of variables declaration//GEN-END:variables
-    
+
     private Object getTokit() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private MessageFormat createFormat(String source) {
-       if (source != null && source.length() > 0) {
+        if (source != null && source.length() > 0) {
             try {
                 return new MessageFormat(source);
             } catch (IllegalArgumentException e) {
@@ -970,25 +958,24 @@ public class textEditorGUI extends javax.swing.JFrame {
             }
         }
         return null;
-      //To change body of generated methods, choose Tools | Templates.
+        //To change body of generated methods, choose Tools | Templates.
     }
 
-   protected final JTextPane getFocusedComponent()
-    {
-        if (indVWS == 0){
+    protected final JTextPane getFocusedComponent() {
+        if (indVWS == 0) {
             activePane = textPane;
-        }else{
+        } else {
             KeyboardFocusManager kfm = KeyboardFocusManager.getCurrentKeyboardFocusManager();
             Component focused = kfm.getPermanentFocusOwner();
-            if (focused instanceof JTextPane){
+            if (focused instanceof JTextPane) {
                 activePane = (JTextPane) focused;
             }
         }
         return activePane;
     }
-    
- public void saveAs(){
-        String name="";
+
+    public void saveAs() {
+        String name = "";
         f[0] = new File("");
         if (indVWS > 0) {
             int n = JOptionPane.showConfirmDialog(
@@ -1005,7 +992,7 @@ public class textEditorGUI extends javax.swing.JFrame {
             docArr[i] = (StyledDocument) textArrV[i].getDocument();
 
             kitArr[i] = new HTMLEditorKit();
-            if (sameLocation == false||i==0) {
+            if (sameLocation == false || i == 0) {
                 saveChooserArr[i] = new JFileChooser();
                 saveChooserArr[i].setMultiSelectionEnabled(false);
                 saveChooserArr[i].setDialogTitle("Save - Window " + i);
@@ -1031,7 +1018,7 @@ public class textEditorGUI extends javax.swing.JFrame {
                     saved = true;
                 }
             }
-            if (sameLocation == true&&i!=0) {
+            if (sameLocation == true && i != 0) {
                 saveChooserArr[i] = new JFileChooser();
                 name = baseName + i;
                 saveChooserArr[i].setSelectedFile(f[i] = new File(name));
@@ -1054,9 +1041,9 @@ public class textEditorGUI extends javax.swing.JFrame {
             }
         }
     }
-    
-    public void save(){
-        String name="";
+
+    public void save() {
+        String name = "";
         f[0] = new File("");
         if (splitsSaved == false && sameLocation == true && newDifLocation == false) {
             if (indVWS > 0) {
@@ -1073,17 +1060,17 @@ public class textEditorGUI extends javax.swing.JFrame {
                 }
             }
         }
-        for (int i = 0; i <= indVWS; i++){
+        for (int i = 0; i <= indVWS; i++) {
             docArr[i] = (StyledDocument) textArrV[i].getDocument();
             kitArr[i] = new HTMLEditorKit();
 
-            if (i==0) {
+            if (i == 0) {
                 try {
                     f[i].delete();
                     stream[i] = new BufferedOutputStream(new FileOutputStream(saveChooserArr[i].getSelectedFile().getAbsoluteFile()));
-                    kitArr[i].write(stream[i],docArr[i],docArr[i].getStartPosition().getOffset(), docArr[i].getLength());
+                    kitArr[i].write(stream[i], docArr[i], docArr[i].getStartPosition().getOffset(), docArr[i].getLength());
                     f[i] = new File(saveChooserArr[i].getSelectedFile().toString());
-                } catch (FileNotFoundException e){
+                } catch (FileNotFoundException e) {
 
                 } catch (IOException e) {
 
@@ -1093,13 +1080,13 @@ public class textEditorGUI extends javax.swing.JFrame {
                 saved = true;
                 splitsSaved = true;
             }
-            if ((sameLocation == false && i != 0)){
+            if ((sameLocation == false && i != 0)) {
                 saveChooserArr[i] = new JFileChooser();
                 saveChooserArr[i].setSelectedFile(f[i]);
-                
+
                 if (option == JFileChooser.APPROVE_OPTION) {
                     try {
-                        if ((i < numSavedSpaces)){ //&& ((indVWS + 1) == numSavedSpaces)){
+                        if ((i < numSavedSpaces)) { //&& ((indVWS + 1) == numSavedSpaces)){
                             f[i].delete();
                             stream[i] = new BufferedOutputStream(new FileOutputStream(saveChooserArr[i].getSelectedFile().getAbsoluteFile()));
                             kitArr[i].write(stream[i], docArr[i], docArr[i].getStartPosition().getOffset(), docArr[i].getLength());
@@ -1109,7 +1096,7 @@ public class textEditorGUI extends javax.swing.JFrame {
                             saveChooserArr[i].setMultiSelectionEnabled(false);
                             saveChooserArr[i].setDialogTitle("Save - Window " + i);
                             int newChoice = saveChooserArr[i].showSaveDialog(textEditorGUI.this);
-                            if (newChoice == JFileChooser.APPROVE_OPTION){
+                            if (newChoice == JFileChooser.APPROVE_OPTION) {
                                 stream[i] = new BufferedOutputStream(new FileOutputStream(saveChooserArr[i].getSelectedFile().getAbsoluteFile()));
                                 kitArr[i].write(stream[i], docArr[i], docArr[i].getStartPosition().getOffset(), docArr[i].getLength());
                                 f[i] = saveChooserArr[i].getSelectedFile();
@@ -1127,15 +1114,15 @@ public class textEditorGUI extends javax.swing.JFrame {
                     saved = true;
                 }
             }
-            if (sameLocation == true&&i!=0) {
+            if (sameLocation == true && i != 0) {
                 try {
                     saveChooserArr[i] = new JFileChooser();
                     saveChooserArr[i].setSelectedFile(f[i]);
                     if (option == JFileChooser.APPROVE_OPTION) {
                         if (newDifLocation == false) {
-                            if (i <= numSavedSpaces){
+                            if (i <= numSavedSpaces) {
                                 name = baseName + i;
-                                saveChooserArr[i].setSelectedFile(f[i]=new File(name));
+                                saveChooserArr[i].setSelectedFile(f[i] = new File(name));
                                 f[i].delete();
                                 stream[i] = new BufferedOutputStream(new FileOutputStream(saveChooserArr[i].getSelectedFile().getAbsoluteFile()));
                                 kitArr[i].write(stream[i], docArr[i], docArr[i].getStartPosition().getOffset(), docArr[i].getLength());
@@ -1145,7 +1132,7 @@ public class textEditorGUI extends javax.swing.JFrame {
                                 saveChooserArr[i].setMultiSelectionEnabled(false);
                                 saveChooserArr[i].setDialogTitle("Save - Window " + numSavedSpaces);
                                 int newChoice = saveChooserArr[i].showSaveDialog(textEditorGUI.this);
-                                if (newChoice == JFileChooser.APPROVE_OPTION){
+                                if (newChoice == JFileChooser.APPROVE_OPTION) {
                                     stream[i] = new BufferedOutputStream(new FileOutputStream(saveChooserArr[i].getSelectedFile().getAbsoluteFile()));
                                     kitArr[i].write(stream[i], docArr[i], docArr[i].getStartPosition().getOffset(), docArr[i].getLength());
                                     f[i] = new File(saveChooserArr[i].getSelectedFile().toString());
@@ -1155,7 +1142,7 @@ public class textEditorGUI extends javax.swing.JFrame {
                             splitsSaved = true;
                             saved = true;
                         } else {
-                            if ((i <= numSavedSpaces)){
+                            if ((i <= numSavedSpaces)) {
                                 f[i].delete();
                                 stream[i] = new BufferedOutputStream(new FileOutputStream(saveChooserArr[i].getSelectedFile().getAbsoluteFile()));
                                 kitArr[i].write(stream[i], docArr[i], docArr[i].getStartPosition().getOffset(), docArr[i].getLength());
@@ -1165,7 +1152,7 @@ public class textEditorGUI extends javax.swing.JFrame {
                                 saveChooserArr[i].setMultiSelectionEnabled(false);
                                 saveChooserArr[i].setDialogTitle("Save - Window " + i);
                                 int newChoice = saveChooserArr[i].showSaveDialog(textEditorGUI.this);
-                                if (newChoice == JFileChooser.APPROVE_OPTION){
+                                if (newChoice == JFileChooser.APPROVE_OPTION) {
                                     stream[i] = new BufferedOutputStream(new FileOutputStream(saveChooserArr[i].getSelectedFile().getAbsoluteFile()));
                                     kitArr[i].write(stream[i], docArr[i], docArr[i].getStartPosition().getOffset(), docArr[i].getLength());
                                     f[i] = saveChooserArr[i].getSelectedFile();
