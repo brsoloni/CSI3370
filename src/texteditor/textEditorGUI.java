@@ -56,6 +56,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Map;
 import java.util.StringTokenizer;
+import javax.swing.text.DefaultHighlighter;
+import javax.swing.text.Document;
+import javax.swing.text.Highlighter;
+import javax.swing.text.JTextComponent;
 
 // textEditorGUI class
 public class textEditorGUI extends javax.swing.JFrame {
@@ -137,6 +141,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         fontItalicButton = new javax.swing.JButton();
         fontNormalButton = new javax.swing.JButton();
         jSeparator5 = new javax.swing.JToolBar.Separator();
+        clearSearchButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         FileMenu = new javax.swing.JMenu();
         newFileItem = new javax.swing.JMenuItem();
@@ -174,6 +179,11 @@ public class textEditorGUI extends javax.swing.JFrame {
         searchButton.setBackground(new java.awt.Color(204, 204, 204));
         searchButton.setText("Search");
         searchButton.setToolTipText("Search the document");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
 
         searchContent.setToolTipText("Search the document");
 
@@ -396,6 +406,13 @@ public class textEditorGUI extends javax.swing.JFrame {
         jToolBar.add(fontNormalButton);
         jToolBar.add(jSeparator5);
 
+        clearSearchButton.setText("Clear Search");
+        clearSearchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearSearchButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -405,6 +422,8 @@ public class textEditorGUI extends javax.swing.JFrame {
                 .addComponent(searchContent, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(searchButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(clearSearchButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -421,7 +440,8 @@ public class textEditorGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(searchContent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchButton))
+                    .addComponent(searchButton)
+                    .addComponent(clearSearchButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 791, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -431,7 +451,7 @@ public class textEditorGUI extends javax.swing.JFrame {
 
         FileMenu.setText("File");
 
-        newFileItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        newFileItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         newFileItem.setText("New");
         newFileItem.setToolTipText("Create a new document");
         newFileItem.addActionListener(new java.awt.event.ActionListener() {
@@ -441,7 +461,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         FileMenu.add(newFileItem);
 
-        openFileItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        openFileItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
         openFileItem.setText("Open");
         openFileItem.setToolTipText("Open an existing document");
         openFileItem.addActionListener(new java.awt.event.ActionListener() {
@@ -451,7 +471,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         FileMenu.add(openFileItem);
 
-        saveItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        saveItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         saveItem.setText("Save");
         saveItem.setToolTipText("Save the current document");
         saveItem.addActionListener(new java.awt.event.ActionListener() {
@@ -461,7 +481,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         FileMenu.add(saveItem);
 
-        saveAsItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        saveAsItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         saveAsItem.setText("Save As");
         saveAsItem.setToolTipText("Save as new document");
         saveAsItem.addActionListener(new java.awt.event.ActionListener() {
@@ -480,7 +500,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         FileMenu.add(printItem);
 
-        exitItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        exitItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_MASK));
         exitItem.setText("Exit");
         exitItem.setToolTipText("Close the program");
         exitItem.addActionListener(new java.awt.event.ActionListener() {
@@ -494,7 +514,7 @@ public class textEditorGUI extends javax.swing.JFrame {
 
         EditMenu.setText("Edit");
 
-        undoItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        undoItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_MASK));
         undoItem.setText("Undo");
         undoItem.setToolTipText("Undo the previous action");
         undoItem.addActionListener(new java.awt.event.ActionListener() {
@@ -504,7 +524,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         EditMenu.add(undoItem);
 
-        redoItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        redoItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.CTRL_MASK));
         redoItem.setText("Redo");
         redoItem.setToolTipText("Redo the previous Undo");
         redoItem.addActionListener(new java.awt.event.ActionListener() {
@@ -514,7 +534,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         EditMenu.add(redoItem);
 
-        copyItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        copyItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
         copyItem.setText("Copy");
         copyItem.setToolTipText("Copy the selected text");
         copyItem.addActionListener(new java.awt.event.ActionListener() {
@@ -524,7 +544,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         EditMenu.add(copyItem);
 
-        pasteItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        pasteItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_MASK));
         pasteItem.setText("Paste");
         pasteItem.setToolTipText("Paste from clipboard");
         pasteItem.addActionListener(new java.awt.event.ActionListener() {
@@ -534,7 +554,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         EditMenu.add(pasteItem);
 
-        cutItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        cutItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
         cutItem.setText("Cut");
         cutItem.setToolTipText("Cut the selected text");
         cutItem.addActionListener(new java.awt.event.ActionListener() {
@@ -544,7 +564,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         EditMenu.add(cutItem);
 
-        selectAllItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        selectAllItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
         selectAllItem.setText("Select All");
         selectAllItem.setToolTipText("Select all text in the document");
         selectAllItem.addActionListener(new java.awt.event.ActionListener() {
@@ -572,7 +592,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         formatMenu.add(headAndFootItem);
 
-        highLightColorButton.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        highLightColorButton.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
         highLightColorButton.setText("Highlight Color");
         highLightColorButton.setToolTipText("Select Highlighter color");
         highLightColorButton.addActionListener(new java.awt.event.ActionListener() {
@@ -653,6 +673,7 @@ public class textEditorGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_newFileItemActionPerformed
 
     private void printItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printItemActionPerformed
+        // Xi's feature
         try {
 
             String newfter = HeaderFooterFrame.newFooter;
@@ -781,6 +802,7 @@ public class textEditorGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_highLightColorButtonActionPerformed
 
     private void highLightQuickButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_highLightQuickButtonActionPerformed
+        // Xi's feature
         int start = textPane.getSelectionStart();
         int end = textPane.getSelectionEnd();
         int selectedLength = end - start;
@@ -889,6 +911,24 @@ public class textEditorGUI extends javax.swing.JFrame {
         highlightColor = newColor;
     }//GEN-LAST:event_highLightColorQuickButtonActionPerformed
 
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+       // Xi's feature
+        if(searchContent.getText().equals("")){        
+        }
+        else
+        highlight(getFocusedComponent(), searchContent.getText());
+    }//GEN-LAST:event_searchButtonActionPerformed
+
+    private void clearSearchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearSearchButtonActionPerformed
+       // Xi's feature
+        if (getFocusedComponent().getText() == null){
+            
+        } else {
+            searchContent.setText("");
+            removeHighlights(getFocusedComponent());
+        }
+    }//GEN-LAST:event_clearSearchButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -933,6 +973,7 @@ public class textEditorGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem aboutSmartPad;
     private javax.swing.JMenuItem clearFormatItem;
     private javax.swing.JButton clearHighLighterQuickButton;
+    private javax.swing.JButton clearSearchButton;
     private javax.swing.JMenu colorMenu;
     private javax.swing.JButton copyButton;
     private javax.swing.JMenuItem copyItem;
@@ -1205,4 +1246,42 @@ public class textEditorGUI extends javax.swing.JFrame {
             }
         }
     }
+ //Begin of "Search function" edited by Xi
+    class MyHighlightPainter extends DefaultHighlighter.DefaultHighlightPainter{
+        public MyHighlightPainter(Color color){
+            super(color);
+            }
+        }
+        Highlighter.HighlightPainter myHighlightPainter = new MyHighlightPainter(Color.cyan);
+         
+        public void removeHighlights(JTextComponent textComp){
+            Highlighter hilite = textComp.getHighlighter();
+            Highlighter.Highlight[] hilites = hilite.getHighlights();
+             
+            for(int i=0; i<hilites.length;i++){
+                if(hilites[i].getPainter() instanceof MyHighlightPainter){
+                    hilite.removeHighlight(hilites[i]);
+                }
+            }
+        }
+        public void highlight(JTextComponent textComp, String pattern){
+             
+            removeHighlights(textComp);
+             
+            try{
+                Highlighter hilite = textComp.getHighlighter();
+                Document doc =textComp.getDocument();
+                String text = doc.getText(0, doc.getLength());
+                int pos=0;
+                 
+                while((pos=text.toUpperCase().indexOf(pattern.toUpperCase(),pos))>=0){
+                    hilite.addHighlight(pos, pos+pattern.length(), myHighlightPainter);
+                    pos += pattern.length();
+                }
+            }
+            catch(Exception e){
+            }
+        }
+        //End of "Search Function" edited by Xi
+    
 }
