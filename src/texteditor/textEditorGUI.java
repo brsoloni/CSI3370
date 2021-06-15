@@ -1030,16 +1030,12 @@ public class textEditorGUI extends javax.swing.JFrame {
 
     private void fontNormalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontNormalButtonActionPerformed
         // Cam
-        int start = getFocusedComponent().getSelectionStart();
-        int end = getFocusedComponent().getSelectionEnd();
-        int selectedLength = end - start;
-        if (selectedLength == 0){
-            
-        } else {
-            Color backgroundClr = getFocusedComponent().getBackground();
-            Font font = new Font("Tahoma", Font.PLAIN, 11);
-            clearFormat(getFocusedComponent(), font, Color.black, backgroundClr, start);
-        }
+        
+        SimpleAttributeSet noUnderline = new SimpleAttributeSet();
+        StyleConstants.setUnderline(noUnderline, Boolean.FALSE);
+        
+        textPane.getStyledDocument().setCharacterAttributes(0, textPane.getStyledDocument().getLength(), noUnderline, false);
+        textPane.setFont(new Font(Font.SANS_SERIF, Font.PLAIN , 11));
     }//GEN-LAST:event_fontNormalButtonActionPerformed
 
     private void highLightColorQuickButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_highLightColorQuickButtonActionPerformed
