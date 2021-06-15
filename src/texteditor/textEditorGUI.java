@@ -61,6 +61,7 @@ import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Document;
 import javax.swing.text.Highlighter;
 import javax.swing.text.JTextComponent;
+import javax.swing.text.MutableAttributeSet;
 import javax.swing.text.SimpleAttributeSet;
 
 // textEditorGUI class
@@ -104,6 +105,10 @@ public class textEditorGUI extends javax.swing.JFrame {
     // ------ Highlighter variables ------
     private Color clrhighlit;
     private Color highlightColor = Color.YELLOW;
+    
+    //----Font color
+    Color clrCrnt;
+    Color fontColor = Color.BLACK;
 
     public textEditorGUI() {
         initComponents();
@@ -140,10 +145,11 @@ public class textEditorGUI extends javax.swing.JFrame {
         fontBoldButton = new javax.swing.JButton();
         fontUnderlineButton = new javax.swing.JButton();
         fontItalicButton = new javax.swing.JButton();
+        fontNormalButton = new javax.swing.JButton();
         setFont = new javax.swing.JButton();
         setFontSize = new javax.swing.JButton();
         setFontColor = new javax.swing.JButton();
-        fontNormalButton = new javax.swing.JButton();
+        clearFormatButton = new javax.swing.JButton();
         jSeparator5 = new javax.swing.JToolBar.Separator();
         formatLeft = new javax.swing.JButton();
         formatCenter = new javax.swing.JButton();
@@ -397,6 +403,22 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         jToolBar.add(fontItalicButton);
 
+        fontNormalButton.setBackground(new java.awt.Color(51, 51, 51));
+        fontNormalButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/texteditor.Icons/text-normal.png"))); // NOI18N
+        fontNormalButton.setToolTipText("Set the selected text to have no font styling");
+        fontNormalButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        fontNormalButton.setFocusable(false);
+        fontNormalButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        fontNormalButton.setMaximumSize(new java.awt.Dimension(39, 50));
+        fontNormalButton.setMinimumSize(new java.awt.Dimension(39, 50));
+        fontNormalButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        fontNormalButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fontNormalButtonActionPerformed(evt);
+            }
+        });
+        jToolBar.add(fontNormalButton);
+
         setFont.setText("Font");
         setFont.setFocusable(false);
         setFont.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -418,23 +440,23 @@ public class textEditorGUI extends javax.swing.JFrame {
         setFontColor.setFocusable(false);
         setFontColor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         setFontColor.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar.add(setFontColor);
-
-        fontNormalButton.setBackground(new java.awt.Color(51, 51, 51));
-        fontNormalButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/texteditor.Icons/text-normal.png"))); // NOI18N
-        fontNormalButton.setToolTipText("Set the selected text to have no font styling");
-        fontNormalButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        fontNormalButton.setFocusable(false);
-        fontNormalButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        fontNormalButton.setMaximumSize(new java.awt.Dimension(39, 50));
-        fontNormalButton.setMinimumSize(new java.awt.Dimension(39, 50));
-        fontNormalButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        fontNormalButton.addActionListener(new java.awt.event.ActionListener() {
+        setFontColor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fontNormalButtonActionPerformed(evt);
+                setFontColorActionPerformed(evt);
             }
         });
-        jToolBar.add(fontNormalButton);
+        jToolBar.add(setFontColor);
+
+        clearFormatButton.setText("Clear Format");
+        clearFormatButton.setFocusable(false);
+        clearFormatButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        clearFormatButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        clearFormatButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearFormatButtonActionPerformed(evt);
+            }
+        });
+        jToolBar.add(clearFormatButton);
         jToolBar.add(jSeparator5);
 
         formatLeft.setText("Align Left");
@@ -512,7 +534,7 @@ public class textEditorGUI extends javax.swing.JFrame {
 
         FileMenu.setText("File");
 
-        newFileItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        newFileItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         newFileItem.setText("New");
         newFileItem.setToolTipText("Create a new document");
         newFileItem.addActionListener(new java.awt.event.ActionListener() {
@@ -522,7 +544,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         FileMenu.add(newFileItem);
 
-        openFileItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        openFileItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
         openFileItem.setText("Open");
         openFileItem.setToolTipText("Open an existing document");
         openFileItem.addActionListener(new java.awt.event.ActionListener() {
@@ -532,7 +554,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         FileMenu.add(openFileItem);
 
-        saveItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        saveItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         saveItem.setText("Save");
         saveItem.setToolTipText("Save the current document");
         saveItem.addActionListener(new java.awt.event.ActionListener() {
@@ -542,7 +564,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         FileMenu.add(saveItem);
 
-        saveAsItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        saveAsItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         saveAsItem.setText("Save As");
         saveAsItem.setToolTipText("Save as new document");
         saveAsItem.addActionListener(new java.awt.event.ActionListener() {
@@ -561,7 +583,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         FileMenu.add(printItem);
 
-        exitItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_DOWN_MASK));
+        exitItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_MASK));
         exitItem.setText("Exit");
         exitItem.setToolTipText("Close the program");
         exitItem.addActionListener(new java.awt.event.ActionListener() {
@@ -575,7 +597,7 @@ public class textEditorGUI extends javax.swing.JFrame {
 
         EditMenu.setText("Edit");
 
-        undoItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        undoItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_MASK));
         undoItem.setText("Undo");
         undoItem.setToolTipText("Undo the previous action");
         undoItem.addActionListener(new java.awt.event.ActionListener() {
@@ -585,7 +607,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         EditMenu.add(undoItem);
 
-        redoItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        redoItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.CTRL_MASK));
         redoItem.setText("Redo");
         redoItem.setToolTipText("Redo the previous Undo");
         redoItem.addActionListener(new java.awt.event.ActionListener() {
@@ -595,7 +617,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         EditMenu.add(redoItem);
 
-        copyItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        copyItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
         copyItem.setText("Copy");
         copyItem.setToolTipText("Copy the selected text");
         copyItem.addActionListener(new java.awt.event.ActionListener() {
@@ -605,7 +627,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         EditMenu.add(copyItem);
 
-        pasteItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        pasteItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_MASK));
         pasteItem.setText("Paste");
         pasteItem.setToolTipText("Paste from clipboard");
         pasteItem.addActionListener(new java.awt.event.ActionListener() {
@@ -615,7 +637,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         EditMenu.add(pasteItem);
 
-        cutItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        cutItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
         cutItem.setText("Cut");
         cutItem.setToolTipText("Cut the selected text");
         cutItem.addActionListener(new java.awt.event.ActionListener() {
@@ -625,7 +647,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         EditMenu.add(cutItem);
 
-        selectAllItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        selectAllItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
         selectAllItem.setText("Select All");
         selectAllItem.setToolTipText("Select all text in the document");
         selectAllItem.addActionListener(new java.awt.event.ActionListener() {
@@ -653,7 +675,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         formatMenu.add(headAndFootItem);
 
-        highLightColorButton.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        highLightColorButton.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
         highLightColorButton.setText("Highlight Color");
         highLightColorButton.setToolTipText("Select Highlighter color");
         highLightColorButton.addActionListener(new java.awt.event.ActionListener() {
@@ -1014,6 +1036,33 @@ public class textEditorGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_setFontActionPerformed
 
+    private void setFontColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setFontColorActionPerformed
+       //Xi's feature
+        int start = getFocusedComponent().getSelectionStart();
+        int end = getFocusedComponent().getSelectionEnd();
+        int selectedLength = end-start;
+        StyledDocument style = getFocusedComponent().getStyledDocument();
+        AttributeSet oldset = style.getCharacterElement(end-1).getAttributes();
+        StyleContext sc = StyleContext.getDefaultStyleContext();
+        fontColor = JColorChooser.showDialog(this, "Select Text Color", clrCrnt);
+        AttributeSet s = sc.addAttribute(oldset, StyleConstants.Foreground, fontColor);
+        style.setCharacterAttributes(start, selectedLength, s, true);
+    }//GEN-LAST:event_setFontColorActionPerformed
+
+    private void clearFormatButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearFormatButtonActionPerformed
+       // Xi's feature
+        int start = getFocusedComponent().getSelectionStart();
+        int end = getFocusedComponent().getSelectionEnd();
+        int selectedLength = end - start;
+        if (selectedLength == 0){
+            
+        } else {
+            Color backgroundClr = getFocusedComponent().getBackground();
+            Font font = new Font("Tahoma", Font.PLAIN, 11);
+            clearFormat(getFocusedComponent(), font, Color.black, backgroundClr, start);
+        }
+    }//GEN-LAST:event_clearFormatButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1056,6 +1105,7 @@ public class textEditorGUI extends javax.swing.JFrame {
     private javax.swing.JButton NewFileButton;
     private javax.swing.JMenu aboutMenu;
     private javax.swing.JMenuItem aboutSmartPad;
+    private javax.swing.JButton clearFormatButton;
     private javax.swing.JMenuItem clearFormatItem;
     private javax.swing.JButton clearHighLighterQuickButton;
     private javax.swing.JButton clearSearchButton;
@@ -1374,5 +1424,30 @@ public class textEditorGUI extends javax.swing.JFrame {
             }
         }
         //End of "Search Function" edited by Xi
+        
+        // Start of clear formatting (Xi)
+    public void clearFormat(JTextPane jtp, Font font, Color c, Color bg, int start) {
+        // Start with the current input attributes for the JTextPane. This
+        // should ensure that we do not wipe out any existing attributes
+        // (such as alignment or other paragraph attributes) currently
+        // set on the text area.
+        MutableAttributeSet attrs = jtp.getInputAttributes();
+        // Set the font family, size, and style, based on properties of the Font object.
+        StyleConstants.setFontFamily(attrs, font.getFamily());
+        StyleConstants.setFontSize(attrs, font.getSize());
+        StyleConstants.setItalic(attrs, false);
+        StyleConstants.setBold(attrs, false);
+        StyleConstants.setUnderline(attrs, false);
+        StyleConstants.setStrikeThrough(attrs, false);
+        // Set the font color
+        StyleConstants.setForeground(attrs, c);
+        StyleConstants.setBackground(attrs, bg);
+        // Retrieve the pane's document object
+        StyledDocument doc = jtp.getStyledDocument();
+
+        // Replace the style for the entire document.
+        doc.setCharacterAttributes(start, getFocusedComponent().getSelectedText().length(), attrs, true);
+    }
+    // End of clear formatting (Xi)
     
 }
