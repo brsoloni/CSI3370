@@ -139,6 +139,9 @@ public class textEditorGUI extends javax.swing.JFrame {
         fontBoldButton = new javax.swing.JButton();
         fontUnderlineButton = new javax.swing.JButton();
         fontItalicButton = new javax.swing.JButton();
+        setFont = new javax.swing.JButton();
+        setFontSize = new javax.swing.JButton();
+        setFontColor = new javax.swing.JButton();
         fontNormalButton = new javax.swing.JButton();
         jSeparator5 = new javax.swing.JToolBar.Separator();
         formatLeft = new javax.swing.JButton();
@@ -392,6 +395,29 @@ public class textEditorGUI extends javax.swing.JFrame {
             }
         });
         jToolBar.add(fontItalicButton);
+
+        setFont.setText("Font");
+        setFont.setFocusable(false);
+        setFont.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        setFont.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        setFont.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setFontActionPerformed(evt);
+            }
+        });
+        jToolBar.add(setFont);
+
+        setFontSize.setText("Size");
+        setFontSize.setFocusable(false);
+        setFontSize.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        setFontSize.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar.add(setFontSize);
+
+        setFontColor.setText("Color");
+        setFontColor.setFocusable(false);
+        setFontColor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        setFontColor.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar.add(setFontColor);
 
         fontNormalButton.setBackground(new java.awt.Color(51, 51, 51));
         fontNormalButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/texteditor.Icons/text-normal.png"))); // NOI18N
@@ -895,7 +921,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         //Font f1 = new Font(Font.SANS_SERIF, Font.BOLD, 11);
         //String selectedText = textPane.getSelectedText();
         //textPane.setFont(f1);
-        textPane.setFont(textPane.getFont().deriveFont(Font.BOLD));
+        textPane.setFont(textPane.getFont().deriveFont(setFont.BOLD));
     }//GEN-LAST:event_fontBoldButtonActionPerformed
 
     private void fontUnderlineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontUnderlineButtonActionPerformed
@@ -909,7 +935,7 @@ public class textEditorGUI extends javax.swing.JFrame {
     private void fontItalicButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontItalicButtonActionPerformed
         // Cam
         //Font f1 = new Font(Font.SANS_SERIF, Font.ITALIC, 11);
-        textPane.setFont(textPane.getFont().deriveFont(Font.ITALIC));
+        textPane.setFont(textPane.getFont().deriveFont(setFont.ITALIC));
     }//GEN-LAST:event_fontItalicButtonActionPerformed
 
     private void openFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openFileButtonActionPerformed
@@ -937,7 +963,7 @@ public class textEditorGUI extends javax.swing.JFrame {
 
     private void fontNormalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontNormalButtonActionPerformed
         // Cam
-        Font plain = new Font(Font.SANS_SERIF, Font.PLAIN , 11);
+        Font plain = new Font(setFont.SANS_SERIF, setFont.PLAIN , 11);
         textPane.setFont(plain);
     }//GEN-LAST:event_fontNormalButtonActionPerformed
 
@@ -985,6 +1011,10 @@ public class textEditorGUI extends javax.swing.JFrame {
         StyleConstants.setAlignment(right, StyleConstants.ALIGN_RIGHT);
         doc.setParagraphAttributes(0, doc.getLength(), right, false);
     }//GEN-LAST:event_formatRightActionPerformed
+
+    private void setFontActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setFontActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_setFontActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1071,6 +1101,9 @@ public class textEditorGUI extends javax.swing.JFrame {
     private javax.swing.JButton searchButton;
     private javax.swing.JTextField searchContent;
     private javax.swing.JMenuItem selectAllItem;
+    private javax.swing.JButton setFont;
+    private javax.swing.JButton setFontColor;
+    private javax.swing.JButton setFontSize;
     private javax.swing.JMenu textMenu;
     private javax.swing.JTextPane textPane;
     private javax.swing.JMenu toolMenu;
