@@ -723,7 +723,8 @@ public class textEditorGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_cutItemActionPerformed
 
     private void selectAllItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectAllItemActionPerformed
-        // TODO add your handling code here:
+        //Xi's feature
+        getFocusedComponent().selectAll();
     }//GEN-LAST:event_selectAllItemActionPerformed
 
     private void openFileItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openFileItemActionPerformed
