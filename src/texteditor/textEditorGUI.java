@@ -149,6 +149,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         fontUnderlineButton = new javax.swing.JButton();
         fontItalicButton = new javax.swing.JButton();
         fontNormalButton = new javax.swing.JButton();
+        jSeparator4 = new javax.swing.JToolBar.Separator();
         setFont = new javax.swing.JButton();
         setFontSize = new javax.swing.JButton();
         setFontColor = new javax.swing.JButton();
@@ -421,10 +422,16 @@ public class textEditorGUI extends javax.swing.JFrame {
             }
         });
         jToolBar.add(fontNormalButton);
+        jToolBar.add(jSeparator4);
 
-        setFont.setText("Font");
+        setFont.setBackground(new java.awt.Color(51, 51, 51));
+        setFont.setIcon(new javax.swing.ImageIcon(getClass().getResource("/texteditor.Icons/font-family.png"))); // NOI18N
+        setFont.setToolTipText("Select the font family to be used");
+        setFont.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         setFont.setFocusable(false);
         setFont.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        setFont.setMaximumSize(new java.awt.Dimension(39, 50));
+        setFont.setMinimumSize(new java.awt.Dimension(39, 50));
         setFont.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         setFont.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -433,15 +440,25 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         jToolBar.add(setFont);
 
-        setFontSize.setText("Size");
+        setFontSize.setBackground(new java.awt.Color(51, 51, 51));
+        setFontSize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/texteditor.Icons/font-size.png"))); // NOI18N
+        setFontSize.setToolTipText("Select the font size to be used");
+        setFontSize.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         setFontSize.setFocusable(false);
         setFontSize.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        setFontSize.setMaximumSize(new java.awt.Dimension(39, 50));
+        setFontSize.setMinimumSize(new java.awt.Dimension(39, 50));
         setFontSize.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar.add(setFontSize);
 
-        setFontColor.setText("Color");
+        setFontColor.setBackground(new java.awt.Color(51, 51, 51));
+        setFontColor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/texteditor.Icons/font-color.png"))); // NOI18N
+        setFontColor.setToolTipText("Select the font color to be used");
+        setFontColor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         setFontColor.setFocusable(false);
         setFontColor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        setFontColor.setMaximumSize(new java.awt.Dimension(39, 50));
+        setFontColor.setMinimumSize(new java.awt.Dimension(39, 50));
         setFontColor.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         setFontColor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -450,9 +467,14 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         jToolBar.add(setFontColor);
 
-        clearFormatButton.setText("Clear Format");
+        clearFormatButton.setBackground(new java.awt.Color(51, 51, 51));
+        clearFormatButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/texteditor.Icons/font-clearformat.png"))); // NOI18N
+        clearFormatButton.setToolTipText("Clear text formatting");
+        clearFormatButton.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         clearFormatButton.setFocusable(false);
         clearFormatButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        clearFormatButton.setMaximumSize(new java.awt.Dimension(39, 50));
+        clearFormatButton.setMinimumSize(new java.awt.Dimension(39, 50));
         clearFormatButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         clearFormatButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -462,9 +484,14 @@ public class textEditorGUI extends javax.swing.JFrame {
         jToolBar.add(clearFormatButton);
         jToolBar.add(jSeparator5);
 
-        formatLeft.setText("Align Left");
+        formatLeft.setBackground(new java.awt.Color(51, 51, 51));
+        formatLeft.setIcon(new javax.swing.ImageIcon(getClass().getResource("/texteditor.Icons/align-left.png"))); // NOI18N
+        formatLeft.setToolTipText("Align Left");
+        formatLeft.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         formatLeft.setFocusable(false);
         formatLeft.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        formatLeft.setMaximumSize(new java.awt.Dimension(39, 50));
+        formatLeft.setMinimumSize(new java.awt.Dimension(39, 50));
         formatLeft.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         formatLeft.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -473,9 +500,14 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         jToolBar.add(formatLeft);
 
-        formatCenter.setText("Align Center");
+        formatCenter.setBackground(new java.awt.Color(51, 51, 51));
+        formatCenter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/texteditor.Icons/align-center.png"))); // NOI18N
+        formatCenter.setToolTipText("Align Center");
+        formatCenter.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         formatCenter.setFocusable(false);
         formatCenter.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        formatCenter.setMaximumSize(new java.awt.Dimension(39, 50));
+        formatCenter.setMinimumSize(new java.awt.Dimension(39, 50));
         formatCenter.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         formatCenter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -484,9 +516,14 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         jToolBar.add(formatCenter);
 
-        formatRight.setText("Align Right");
+        formatRight.setBackground(new java.awt.Color(51, 51, 51));
+        formatRight.setIcon(new javax.swing.ImageIcon(getClass().getResource("/texteditor.Icons/align-right.png"))); // NOI18N
+        formatRight.setToolTipText("Align Right");
+        formatRight.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         formatRight.setFocusable(false);
         formatRight.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        formatRight.setMaximumSize(new java.awt.Dimension(39, 50));
+        formatRight.setMinimumSize(new java.awt.Dimension(39, 50));
         formatRight.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         formatRight.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -515,10 +552,10 @@ public class textEditorGUI extends javax.swing.JFrame {
                 .addComponent(clearSearchButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(10, 10, 10)
+                .addComponent(jToolBar, javax.swing.GroupLayout.PREFERRED_SIZE, 790, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 400, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -537,7 +574,7 @@ public class textEditorGUI extends javax.swing.JFrame {
 
         FileMenu.setText("File");
 
-        newFileItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        newFileItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         newFileItem.setText("New");
         newFileItem.setToolTipText("Create a new document");
         newFileItem.addActionListener(new java.awt.event.ActionListener() {
@@ -547,7 +584,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         FileMenu.add(newFileItem);
 
-        openFileItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        openFileItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         openFileItem.setText("Open");
         openFileItem.setToolTipText("Open an existing document");
         openFileItem.addActionListener(new java.awt.event.ActionListener() {
@@ -557,7 +594,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         FileMenu.add(openFileItem);
 
-        saveItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        saveItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         saveItem.setText("Save");
         saveItem.setToolTipText("Save the current document");
         saveItem.addActionListener(new java.awt.event.ActionListener() {
@@ -567,7 +604,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         FileMenu.add(saveItem);
 
-        saveAsItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        saveAsItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         saveAsItem.setText("Save As");
         saveAsItem.setToolTipText("Save as new document");
         saveAsItem.addActionListener(new java.awt.event.ActionListener() {
@@ -586,7 +623,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         FileMenu.add(printItem);
 
-        exitItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_MASK));
+        exitItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_DOWN_MASK));
         exitItem.setText("Exit");
         exitItem.setToolTipText("Close the program");
         exitItem.addActionListener(new java.awt.event.ActionListener() {
@@ -600,7 +637,7 @@ public class textEditorGUI extends javax.swing.JFrame {
 
         EditMenu.setText("Edit");
 
-        undoItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_MASK));
+        undoItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         undoItem.setText("Undo");
         undoItem.setToolTipText("Undo the previous action");
         undoItem.addActionListener(new java.awt.event.ActionListener() {
@@ -610,7 +647,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         EditMenu.add(undoItem);
 
-        redoItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.CTRL_MASK));
+        redoItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         redoItem.setText("Redo");
         redoItem.setToolTipText("Redo the previous Undo");
         redoItem.addActionListener(new java.awt.event.ActionListener() {
@@ -620,7 +657,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         EditMenu.add(redoItem);
 
-        copyItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
+        copyItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         copyItem.setText("Copy");
         copyItem.setToolTipText("Copy the selected text");
         copyItem.addActionListener(new java.awt.event.ActionListener() {
@@ -630,7 +667,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         EditMenu.add(copyItem);
 
-        pasteItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_MASK));
+        pasteItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         pasteItem.setText("Paste");
         pasteItem.setToolTipText("Paste from clipboard");
         pasteItem.addActionListener(new java.awt.event.ActionListener() {
@@ -640,7 +677,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         EditMenu.add(pasteItem);
 
-        cutItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
+        cutItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         cutItem.setText("Cut");
         cutItem.setToolTipText("Cut the selected text");
         cutItem.addActionListener(new java.awt.event.ActionListener() {
@@ -650,7 +687,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         EditMenu.add(cutItem);
 
-        selectAllItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
+        selectAllItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         selectAllItem.setText("Select All");
         selectAllItem.setToolTipText("Select all text in the document");
         selectAllItem.addActionListener(new java.awt.event.ActionListener() {
@@ -678,7 +715,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         formatMenu.add(headAndFootItem);
 
-        highLightColorButton.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
+        highLightColorButton.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         highLightColorButton.setText("Highlight Color");
         highLightColorButton.setToolTipText("Select Highlighter color");
         highLightColorButton.addActionListener(new java.awt.event.ActionListener() {
@@ -726,7 +763,9 @@ public class textEditorGUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1143,6 +1182,7 @@ public class textEditorGUI extends javax.swing.JFrame {
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar.Separator jSeparator3;
+    private javax.swing.JToolBar.Separator jSeparator4;
     private javax.swing.JToolBar.Separator jSeparator5;
     private javax.swing.JToolBar jToolBar;
     private javax.swing.JMenuItem newFileItem;
