@@ -921,7 +921,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         //Font f1 = new Font(Font.SANS_SERIF, Font.BOLD, 11);
         //String selectedText = textPane.getSelectedText();
         //textPane.setFont(f1);
-        textPane.setFont(textPane.getFont().deriveFont(setFont.BOLD));
+        textPane.setFont(textPane.getFont().deriveFont(Font.BOLD));
     }//GEN-LAST:event_fontBoldButtonActionPerformed
 
     private void fontUnderlineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontUnderlineButtonActionPerformed
@@ -935,7 +935,7 @@ public class textEditorGUI extends javax.swing.JFrame {
     private void fontItalicButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontItalicButtonActionPerformed
         // Cam
         //Font f1 = new Font(Font.SANS_SERIF, Font.ITALIC, 11);
-        textPane.setFont(textPane.getFont().deriveFont(setFont.ITALIC));
+        textPane.setFont(textPane.getFont().deriveFont(Font.ITALIC));
     }//GEN-LAST:event_fontItalicButtonActionPerformed
 
     private void openFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openFileButtonActionPerformed
@@ -963,7 +963,7 @@ public class textEditorGUI extends javax.swing.JFrame {
 
     private void fontNormalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontNormalButtonActionPerformed
         // Cam
-        Font plain = new Font(setFont.SANS_SERIF, setFont.PLAIN , 11);
+        Font plain = new Font(Font.SANS_SERIF, Font.PLAIN , 11);
         textPane.setFont(plain);
     }//GEN-LAST:event_fontNormalButtonActionPerformed
 
