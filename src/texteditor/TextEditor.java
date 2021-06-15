@@ -20,7 +20,7 @@ public class TextEditor {
     public static void main(String[] args) {
         // Controller Logic
         textEditorGUI obj= new textEditorGUI();
-        obj.setBounds(0,0,700,800);
+        obj.setBounds(0,0,800,800);
         obj.setTitle("SmartPad");
         obj.setResizable(false);
         obj.setVisible(true);
