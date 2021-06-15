@@ -949,7 +949,10 @@ public class textEditorGUI extends javax.swing.JFrame {
 
     private void fontUnderlineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontUnderlineButtonActionPerformed
         // TODO add your handling code here:          
-
+        SimpleAttributeSet underline = new SimpleAttributeSet();
+        StyleConstants.setUnderline(underline, Boolean.TRUE);
+        StyledDocument doc = textPane.getStyledDocument();
+        doc.setCharacterAttributes(0, doc.getLength(), underline, false);
     }//GEN-LAST:event_fontUnderlineButtonActionPerformed
 
     private void fontItalicButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontItalicButtonActionPerformed
