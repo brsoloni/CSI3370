@@ -51,6 +51,7 @@ import javax.swing.text.StyledDocument;
 import javax.swing.text.html.HTMLEditorKit;
 // ------ Text Imports ------
 import java.text.MessageFormat;
+import java.util.HashMap;
 // ------ Java Utilities Imports ------
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -925,11 +926,8 @@ public class textEditorGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_fontBoldButtonActionPerformed
 
     private void fontUnderlineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontUnderlineButtonActionPerformed
-        // TODO add your handling code here:
-        Font f1 = textPane.getFont();
-        Map attributes = f1.getAttributes();
-        attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
-        textPane.setFont(f1.deriveFont(attributes));
+        // TODO add your handling code here:          
+
     }//GEN-LAST:event_fontUnderlineButtonActionPerformed
 
     private void fontItalicButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontItalicButtonActionPerformed
