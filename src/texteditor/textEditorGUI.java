@@ -57,12 +57,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Map;
 import java.util.StringTokenizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Document;
 import javax.swing.text.Highlighter;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.MutableAttributeSet;
 import javax.swing.text.SimpleAttributeSet;
+import org.jsoup.Jsoup;
 
 // textEditorGUI class
 public class textEditorGUI extends javax.swing.JFrame {
@@ -964,6 +967,7 @@ public class textEditorGUI extends javax.swing.JFrame {
     private void openFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openFileButtonActionPerformed
         //Xi's features
         FileDialog fileDialog = new FileDialog(textEditorGUI.this, "Open File", FileDialog.LOAD);
+        
         fileDialog.setVisible(true);
         if (fileDialog.getFile() != null) {
             fileName = fileDialog.getDirectory() + fileDialog.getFile();
@@ -976,7 +980,7 @@ public class textEditorGUI extends javax.swing.JFrame {
             String line = null;
             while ((line = reader.readLine()) != null) {
                 sb.append(line + "\n");
-                textPane.setText(sb.toString());
+                textPane.setText(html2text(sb.toString()));
             }
             reader.close();
         } catch (IOException e) {
@@ -1176,6 +1180,11 @@ public class textEditorGUI extends javax.swing.JFrame {
         }
         return null;
         //To change body of generated methods, choose Tools | Templates.
+    }
+    
+
+    public static String html2text(String html) {
+        return Jsoup.parse(html).wholeText();
     }
 
     protected final JTextPane getFocusedComponent() {
