@@ -189,6 +189,7 @@ public class textEditorGUI extends javax.swing.JFrame {
 
         textPane.setBackground(new java.awt.Color(240, 240, 240));
         textPane.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        textPane.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jScrollPane1.setViewportView(textPane);
 
         jToolBar.setBackground(new java.awt.Color(102, 102, 102));
@@ -451,7 +452,7 @@ public class textEditorGUI extends javax.swing.JFrame {
 
         FileMenu.setText("File");
 
-        newFileItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        newFileItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         newFileItem.setText("New");
         newFileItem.setToolTipText("Create a new document");
         newFileItem.addActionListener(new java.awt.event.ActionListener() {
@@ -461,7 +462,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         FileMenu.add(newFileItem);
 
-        openFileItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        openFileItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         openFileItem.setText("Open");
         openFileItem.setToolTipText("Open an existing document");
         openFileItem.addActionListener(new java.awt.event.ActionListener() {
@@ -471,7 +472,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         FileMenu.add(openFileItem);
 
-        saveItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        saveItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         saveItem.setText("Save");
         saveItem.setToolTipText("Save the current document");
         saveItem.addActionListener(new java.awt.event.ActionListener() {
@@ -481,7 +482,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         FileMenu.add(saveItem);
 
-        saveAsItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        saveAsItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         saveAsItem.setText("Save As");
         saveAsItem.setToolTipText("Save as new document");
         saveAsItem.addActionListener(new java.awt.event.ActionListener() {
@@ -500,7 +501,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         FileMenu.add(printItem);
 
-        exitItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_MASK));
+        exitItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.ALT_DOWN_MASK));
         exitItem.setText("Exit");
         exitItem.setToolTipText("Close the program");
         exitItem.addActionListener(new java.awt.event.ActionListener() {
@@ -514,7 +515,7 @@ public class textEditorGUI extends javax.swing.JFrame {
 
         EditMenu.setText("Edit");
 
-        undoItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_MASK));
+        undoItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         undoItem.setText("Undo");
         undoItem.setToolTipText("Undo the previous action");
         undoItem.addActionListener(new java.awt.event.ActionListener() {
@@ -524,7 +525,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         EditMenu.add(undoItem);
 
-        redoItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.CTRL_MASK));
+        redoItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         redoItem.setText("Redo");
         redoItem.setToolTipText("Redo the previous Undo");
         redoItem.addActionListener(new java.awt.event.ActionListener() {
@@ -534,7 +535,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         EditMenu.add(redoItem);
 
-        copyItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
+        copyItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         copyItem.setText("Copy");
         copyItem.setToolTipText("Copy the selected text");
         copyItem.addActionListener(new java.awt.event.ActionListener() {
@@ -544,7 +545,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         EditMenu.add(copyItem);
 
-        pasteItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_MASK));
+        pasteItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         pasteItem.setText("Paste");
         pasteItem.setToolTipText("Paste from clipboard");
         pasteItem.addActionListener(new java.awt.event.ActionListener() {
@@ -554,7 +555,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         EditMenu.add(pasteItem);
 
-        cutItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
+        cutItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         cutItem.setText("Cut");
         cutItem.setToolTipText("Cut the selected text");
         cutItem.addActionListener(new java.awt.event.ActionListener() {
@@ -564,7 +565,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         EditMenu.add(cutItem);
 
-        selectAllItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
+        selectAllItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         selectAllItem.setText("Select All");
         selectAllItem.setToolTipText("Select all text in the document");
         selectAllItem.addActionListener(new java.awt.event.ActionListener() {
@@ -592,7 +593,7 @@ public class textEditorGUI extends javax.swing.JFrame {
         });
         formatMenu.add(headAndFootItem);
 
-        highLightColorButton.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
+        highLightColorButton.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         highLightColorButton.setText("Highlight Color");
         highLightColorButton.setToolTipText("Select Highlighter color");
         highLightColorButton.addActionListener(new java.awt.event.ActionListener() {
@@ -857,9 +858,10 @@ public class textEditorGUI extends javax.swing.JFrame {
 
     private void fontBoldButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontBoldButtonActionPerformed
         // Cam
-        Font f1 = new Font(Font.SANS_SERIF, Font.BOLD, 11);
+        //Font f1 = new Font(Font.SANS_SERIF, Font.BOLD, 11);
         //String selectedText = textPane.getSelectedText();
-        textPane.setFont(f1);
+        //textPane.setFont(f1);
+        textPane.setFont(textPane.getFont().deriveFont(Font.BOLD));
     }//GEN-LAST:event_fontBoldButtonActionPerformed
 
     private void fontUnderlineButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontUnderlineButtonActionPerformed
@@ -872,8 +874,8 @@ public class textEditorGUI extends javax.swing.JFrame {
 
     private void fontItalicButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontItalicButtonActionPerformed
         // Cam
-        Font f1 = new Font(Font.SANS_SERIF, Font.ITALIC, 11);
-        textPane.setFont(f1);
+        //Font f1 = new Font(Font.SANS_SERIF, Font.ITALIC, 11);
+        textPane.setFont(textPane.getFont().deriveFont(Font.ITALIC));
     }//GEN-LAST:event_fontItalicButtonActionPerformed
 
     private void openFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openFileButtonActionPerformed

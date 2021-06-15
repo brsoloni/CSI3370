@@ -1,7 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+    SmartPad, Copyright 2021
+    Created by:
+    Brent Soloniewicz
+    Nathanial Matovski
+    Ellis Mouton
+    Mahmudur Rahman
+    Xi Song
+    Cameron Jordan
  */
 package texteditor;
 import javax.swing.text.StyledDocument;
