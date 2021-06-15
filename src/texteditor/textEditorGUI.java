@@ -65,7 +65,7 @@ import javax.swing.text.Highlighter;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.MutableAttributeSet;
 import javax.swing.text.SimpleAttributeSet;
-import org.jsoup.Jsoup;
+import org.jsoup.Jsoup; // https://jsoup.org/download
 
 // textEditorGUI class
 public class textEditorGUI extends javax.swing.JFrame {
