@@ -980,7 +980,8 @@ public class textEditorGUI extends javax.swing.JFrame {
             String line = null;
             while ((line = reader.readLine()) != null) {
                 sb.append(line + "\n");
-                textPane.setText(html2text(sb.toString()));
+                String parsed = html2text(sb.toString());
+                textPane.setText(parsed.trim());
             }
             reader.close();
         } catch (IOException e) {
